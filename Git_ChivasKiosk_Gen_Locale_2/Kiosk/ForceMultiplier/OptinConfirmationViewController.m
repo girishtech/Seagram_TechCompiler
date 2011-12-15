@@ -7,11 +7,17 @@
 //
 
 #import "OptinConfirmationViewController.h"
-
+#import "ForceMultiplierAppDelegate.h"
+#import "RootViewController.h"
 
 @implementation OptinConfirmationViewController
 
 @synthesize tabbedVC, optInBtn, optInLabel, optInBox;
+
+- (ForceMultiplierAppDelegate*) appDelegate {
+    return (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication]delegate];
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,6 +59,13 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void) viewWillAppear:(BOOL)animated {    
+    [super viewWillAppear:animated];
+    RootViewController *rtController = [[self appDelegate] rootVC];
+    [rtController showErrorMessage:@""];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated

@@ -12,7 +12,7 @@
 #import "ForceMultiplierAppDelegate.h"
 #import "PickerViewController.h"
 #import "UIView+findFirstResponder.h"
-
+#import "ThankYouViewController.h"
 @interface DataCollection_Abbr_ViewController : UIViewController <UIPopoverControllerDelegate,PopoverPickerDelegate,UITextFieldDelegate>{
     //Views
     IBOutlet UIView *content;

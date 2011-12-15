@@ -217,7 +217,7 @@
     //Find current textfield and return its index
     
     
-        //Move Scroll View Appropriately
+      //Move Scroll View Appropriately
         ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
         UIScrollView *masterScroll = [[appDelegate rootVC] scrollView];
         
@@ -236,7 +236,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
 	ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
-    [[appDelegate rootVC]hideErrorMessage];
+    //[[appDelegate rootVC]hideErrorMessage];
 	//isEditing = NO;
 }
 

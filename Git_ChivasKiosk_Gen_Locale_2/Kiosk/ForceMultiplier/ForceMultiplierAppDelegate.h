@@ -53,4 +53,11 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
+// shahab open
+
+-(BOOL) autoLogin;
+
+// shahab close
+
+
 @end

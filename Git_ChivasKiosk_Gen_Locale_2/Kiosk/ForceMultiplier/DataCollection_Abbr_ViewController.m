@@ -7,7 +7,7 @@
 //
 
 #import "DataCollection_Abbr_ViewController.h"
-
+#import "PhotoConsentViewController.h"
 
 @implementation DataCollection_Abbr_ViewController
 
@@ -46,6 +46,11 @@
     [super viewDidAppear:animated];
     [self _layoutPage];
     optIn.selected = YES;
+}
+
+- (void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
 }
 
 - (void)viewDidLoad
@@ -587,16 +592,21 @@
             {
                 [[appDelegate rootVC] hideHeader];
             }
-            
-            QuestionListViewController *questionListVC = [[QuestionListViewController alloc] initWithNibName:@"QuestionListViewController" bundle:nil];
+        
+            PhotoConsentViewController *questionListVC = [[PhotoConsentViewController alloc] initWithNibName:@"PhotoConsentViewController" bundle:nil];
             [[[appDelegate rootVC] navController] pushViewController:questionListVC animated:YES];
+
+            
+            
+//            QuestionListViewController *questionListVC = [[QuestionListViewController alloc] initWithNibName:@"QuestionListViewController" bundle:nil];
+//            [[[appDelegate rootVC] navController] pushViewController:questionListVC animated:YES];
         }else{
             if(HIDES_HEADER_ON_THANKYOU_PAGE)
             {
                 [[appDelegate rootVC] hideHeader];
             }
             
-            ThankYouPurchaseViewController *thankYouVC = [[ThankYouPurchaseViewController alloc] initWithNibName:@"ThankYouPurchaseViewController" bundle:nil];
+            ThankYouViewController *thankYouVC = [[ThankYouViewController alloc] initWithNibName:@"ThankYouViewController" bundle:nil];
             
             [[[appDelegate rootVC] navController] pushViewController:thankYouVC animated:YES];
         }
@@ -917,7 +927,12 @@
 -(void)cancelOrder
 {
     if(person!=nil){
-        [person setValue:[[NSString alloc] initWithString:@"false"] forKey:@"Ordered"];
+        @try {
+            [person setValue:[[NSString alloc] initWithString:@"false"] forKey:@"Ordered"];
+        }
+        @catch (NSException *exception) {
+            NSLog([exception description]);
+        }
     }
 }
 

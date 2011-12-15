@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K540</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
 		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
@@ -44,10 +44,10 @@
 					<object class="IBUIImageView" id="815110054">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{1024, 748}</string>
+						<string key="NSFrame">{{-1, -54}, {1024, 748}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="771892790"/>
+						<reference key="NSNextKeyView" ref="86270984"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="402125548">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -58,7 +58,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">Default-Landscape~ipad.png</string>
+							<string key="NSResourceName">Default.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="86270984">
@@ -97,10 +97,10 @@
 					<object class="IBUIButton" id="771892790">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{1024, 748}</string>
+						<string key="NSFrame">{{-20, -92}, {1024, 748}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="86270984"/>
+						<reference key="NSNextKeyView" ref="815110054"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -137,6 +137,7 @@
 						<string key="NSFrame">{{432, 664}, {158, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -164,7 +165,7 @@
 				<string key="NSFrame">{{0, 20}, {1024, 748}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="815110054"/>
+				<reference key="NSNextKeyView" ref="771892790"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
@@ -254,11 +255,11 @@
 						<reference key="object" ref="766721923"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="815110054"/>
 							<reference ref="180853313"/>
 							<reference ref="86270984"/>
-							<reference ref="771892790"/>
 							<reference ref="74883414"/>
+							<reference ref="815110054"/>
+							<reference ref="771892790"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">View</string>
@@ -397,13 +398,13 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>Default-Landscape~ipad.png</string>
+				<string>Default.png</string>
 				<string>blankPNG.png</string>
 				<string>loadingPrompt.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{1025, 741}</string>
+				<string>{1024, 770}</string>
 				<string>{5, 5}</string>
 				<string>{482, 321}</string>
 			</object>

@@ -409,7 +409,7 @@
 									<object class="IBUITableView" id="1029112642">
 										<reference key="NSNextResponder" ref="936958968"/>
 										<int key="NSvFlags">274</int>
-										<string key="NSFrame">{{1, 22}, {848, 208}}</string>
+										<string key="NSFrame">{{1, 23}, {848, 208}}</string>
 										<reference key="NSSuperview" ref="936958968"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="355624055"/>
@@ -425,7 +425,7 @@
 										<float key="IBUISectionFooterHeight">22</float>
 									</object>
 								</object>
-								<string key="NSFrame">{{25, 309}, {850, 231}}</string>
+								<string key="NSFrame">{{25, 334}, {850, 231}}</string>
 								<reference key="NSSuperview" ref="589652147"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1029112642"/>
@@ -693,10 +693,9 @@
 							<object class="IBUIButton" id="355624055">
 								<reference key="NSNextResponder" ref="589652147"/>
 								<int key="NSvFlags">261</int>
-								<string key="NSFrame">{{290, 543}, {319, 37}}</string>
+								<string key="NSFrame">{{290, 568}, {319, 37}}</string>
 								<reference key="NSSuperview" ref="589652147"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -1021,7 +1020,6 @@
 							<reference ref="705510241"/>
 							<reference ref="967463123"/>
 							<reference ref="157984746"/>
-							<reference ref="355624055"/>
 							<reference ref="321007716"/>
 							<reference ref="878546034"/>
 							<reference ref="211032095"/>
@@ -1032,6 +1030,7 @@
 							<reference ref="891888023"/>
 							<reference ref="451979860"/>
 							<reference ref="705595291"/>
+							<reference ref="355624055"/>
 						</object>
 						<reference key="parent" ref="266468974"/>
 					</object>

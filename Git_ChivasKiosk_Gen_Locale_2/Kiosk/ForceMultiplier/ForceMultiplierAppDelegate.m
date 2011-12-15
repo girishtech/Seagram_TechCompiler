@@ -202,7 +202,8 @@
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
     [self buildHomeView];
-    if(da.currentSession != nil){
+    if(da.currentSession != nil)
+    {
         if(![da.currentSession isEqualToString:@""]){
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:da.currentSession forKey:@"kiosk_currentSession"];
@@ -294,7 +295,7 @@
     /*rootVC = [[RootViewController alloc] initWithNibName:"RootViewController.xib" bundle:nil];*/
 }
 
-- (void)saveContext
+-(void)saveContext
 {
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
@@ -413,5 +414,56 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+// shahab open
+
+-(BOOL) autoLogin
+{
+    NSError *errorLoggingIn = nil;
+    NSArray *logins = nil;
+    NSError *errorSavingLogin = nil;
+    ///*
+    // Create a request to fetch all Chefs.
+    
+    NSEntityDescription *userEntity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:[self managedObjectContext]];
+    
+    //[sessionEntity setValue:[session valueForKey:@"TimeID"] forKey:@"TimeID"];
+    
+    NSFetchRequest *allLoginRequest = [[NSFetchRequest alloc] init];
+    [allLoginRequest setEntity:userEntity];
+    
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+//                              @"(Username = %@) AND (Password = %@)", user,pass];
+//    [allLoginRequest setPredicate:predicate];
+    
+    
+    // Ask the context for everything matching the request.
+    // If an error occurs, the context will return nil and an error in *error.
+    
+    logins = [[self managedObjectContext] executeFetchRequest:allLoginRequest error:&errorLoggingIn];
+    
+    NSEnumerator *loginEnumerator = [logins objectEnumerator];
+    NSManagedObject *tmp;
+    
+    
+    //check if we got back a user, if so trigger login method
+    if([logins count]>0){
+        if(tmp = [loginEnumerator nextObject] != nil)
+        {
+            NSDictionary *dict = [logins objectAtIndex:0];
+            NSString *username = [dict valueForKey:@"Username"];
+            NSString *password = [dict valueForKey:@"Password"];
+            //NSLog(str);
+            return YES;
+        }
+
+    }else{
+        //Login failed from local db, check on server
+        return NO;
+    }
+    
+}
+
+// shahab close
 
 @end

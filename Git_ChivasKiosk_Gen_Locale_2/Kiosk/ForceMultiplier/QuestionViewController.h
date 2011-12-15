@@ -6,8 +6,16 @@
 //  Copyright 2011 Rochester Institute of Technology. All rights reserved.
 //
 
+//#import <UIKit/UIKit.h>
+//@class ForceMultiplierAppDelegate;
+
 #import <UIKit/UIKit.h>
-@class ForceMultiplierAppDelegate;
+#import "DataCollection_Question_ViewController.h"
+#import "QuestionListViewController.h"
+#import "ForceMultiplierAppDelegate.h"
+#import "PickerViewController.h"
+#import "UIView+findFirstResponder.h"
+
 
 @interface QuestionViewController : UIViewController <UITextFieldDelegate> {
     NSNumber *VERTICAL_SPREAD;

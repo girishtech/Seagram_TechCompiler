@@ -284,11 +284,13 @@
         [self selectTab:quick_btn];
         //self.tabBarController.selectedIndex = 0;
         
+        [[self dc_abbrVC]cancelOrder];
+        [[self dc_abbrVC]clearFields];
+        
         [[self dc_fullVC]cancelOrder];
         [[self dc_fullVC]clearFields];
         
-        [[self dc_abbrVC]cancelOrder];
-        [[self dc_abbrVC]clearFields];
+
     }
     
     //ABBR VIEW ONLY

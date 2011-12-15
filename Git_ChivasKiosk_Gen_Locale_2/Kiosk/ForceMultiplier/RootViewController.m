@@ -107,7 +107,8 @@
     {
         // Create Nav Controller
         navController = [[UINavigationController alloc] initWithRootViewController:optInVC];
-        
+//        navController = [[UINavigationController alloc] initWithRootViewController:[self appDelegate].settingsVw];
+      
         // Custom resize nav controller to fit in its subview
         frame = mainContentView.frame;
         frame.origin.y = HEADER_HEIGHT;
@@ -138,8 +139,23 @@
         }
         else
         {
+            
             [self clickedSettings];
-            [self hideSettings];
+            
+            // shahab open
+            
+            if (![self appDelegate].userIsLoggedIn) {
+                [self hideSettings];
+            }
+            
+            // shahab close
+            
+            // shahab open comment
+            
+            //[self hideSettings];
+
+            // shahab close comment
+            
         }
       
         
@@ -346,8 +362,14 @@
 
 -(void)syncSucceeded
 {
-    [self hideErrorMessage];
-    [self.sync setHidden:NO];
+    if ([self appDelegate].userIsLoggedIn) {
+        [self hideErrorMessage];
+        [self.sync setHidden:NO];
+    } else {
+        //[self hideErrorMessage];
+        [self.sync setHidden:YES];
+    }
+    
     if([[self.navController viewControllers]count] > 1){
         NSLog(@"Nav stack size: %d",[[self.navController viewControllers]count]);
         //NSLog(@"ClassName: %@",NSStringFromClass([[self.navController viewControllers]objectAtIndex:[[self.navController viewControllers]count] - 1]));
@@ -452,6 +474,18 @@
     }
 }
 
+// shahab open
+
+- (BOOL) firstLaunch {
+    if ([[self appDelegate] autoLogin]) {
+        return YES;
+    }
+    return NO;
+}
+
+// shahab close
+
+
 -(IBAction)clickedSettings
 {
     // shahab open
@@ -475,20 +509,34 @@
     NSLog(@"clickedSettings");
     
     // shahab open
-    if(loginVC == nil){
-        loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController_Landscape" bundle:nil];
-        [loginVC clearFields];
-        
-        [self.navController pushViewController:loginVC animated:YES];
-    } else {
-//        [self.navController popViewControllerAnimated:YES];
+    
+    BOOL isAutologinTrue = [self firstLaunch];
+    //isAutologinTrue = NO;
+    if (isAutologinTrue) {
+        [self appDelegate].userIsLoggedIn = YES;
+        [self showCancel];
         if([self appDelegate].settingsVw == nil){
             [self appDelegate].settingsVw = [[KioskSettingsViewController alloc] initWithNibName:@"KioskSettingsViewController" bundle:nil];
         }
         [self.navController pushViewController:[self appDelegate].settingsVw animated:YES];
+    } else {
+        if(loginVC == nil){
+            loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController_Landscape" bundle:nil];
+            [loginVC clearFields];
+            
+            [self.navController pushViewController:loginVC animated:YES];
+        } else {
+            //        [self.navController popViewControllerAnimated:YES];
+            if([self appDelegate].settingsVw == nil){
+                [self appDelegate].settingsVw = [[KioskSettingsViewController alloc] initWithNibName:@"KioskSettingsViewController" bundle:nil];
+            }
+            [self.navController pushViewController:[self appDelegate].settingsVw animated:YES];
+            
+        }
 
     }
-
+    
+ 
     // shahab close
     
     // shahab open commented

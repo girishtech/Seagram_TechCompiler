@@ -20,27 +20,48 @@ NSString * const CURRENTVERSION = @"3.0.0.1";
 // DEV = 0
 // STG = 1
 // PROD = 2
-int const RELEASE = 2;
+int const RELEASE = 0;
 
 NSString * const WS_DEV = @"http://ssv2dev.etghosting.net/API/";
 NSString * const WS_STG = @"http://ssv2stg.etghosting.net/API/";
 NSString * const WS_PROD = @"http://ssv2prod.etghosting.net/API/";
 
-NSString * const STUDYID_DEV_ENG = @"102";
-NSString * const STUDYID_STG_ENG = @"102";
-NSString * const STUDYID_PROD_ENG = @"10";
+//NSString * const STUDYID_DEV_ENG = @"102";
+//NSString * const STUDYID_STG_ENG = @"102";
+//NSString * const STUDYID_PROD_ENG = @"10";
 
 NSString * const STUDYID_DEV_ES = @"102";
 NSString * const STUDYID_STG_ES = @"102";
 NSString * const STUDYID_PROD_ES = @"30";
 
-NSString * const APIKEY_DEV_ENG = @"90D83C10-E107-4B45-876B-D9EA756DD25C";
-NSString * const APIKEY_STG_ENG = @"C5D76495-6810-41EA-B863-8FD99851AB0E";
-NSString * const APIKEY_PROD_ENG = @"C5D76495-6810-41EA-B863-8FD99851AB0E";
+//NSString * const APIKEY_DEV_ENG = @"90D83C10-E107-4B45-876B-D9EA756DD25C";
+//NSString * const APIKEY_STG_ENG = @"C5D76495-6810-41EA-B863-8FD99851AB0E";
+//NSString * const APIKEY_PROD_ENG = @"C5D76495-6810-41EA-B863-8FD99851AB0E";
 
-NSString * const APPKEY_DEV_ENG = @"A7DC1447-6D66-4B02-BA69-5638B7A70AD6";
-NSString * const APPKEY_STG_ENG = @"A7DC1447-6D66-4B02-BA69-5638B7A70AD6";
-NSString * const APPKEY_PROD_ENG = @"737EC502-675C-40C4-AC31-4002150982A3";
+//NSString * const APPKEY_DEV_ENG = @"A7DC1447-6D66-4B02-BA69-5638B7A70AD6";
+//NSString * const APPKEY_STG_ENG = @"A7DC1447-6D66-4B02-BA69-5638B7A70AD6";
+//NSString * const APPKEY_PROD_ENG = @"737EC502-675C-40C4-AC31-4002150982A3";
+
+// API Keys
+
+NSString * const APIKEY_DEV_ENG = @"90d83c10-e107-4b45-876b-d9ea756dd25c";
+NSString * const APIKEY_STG_ENG = @"90d83c10-e107-4b45-876b-d9ea756dd25c";
+NSString * const APIKEY_PROD_ENG = @"c73514fb-e246-4845-b377-3b5b771eb4bc";
+
+//Application Keys
+
+NSString * const APPKEY_DEV_ENG = @"568ed8c9-716c-4245-9cea-90d2dd707578";
+NSString * const APPKEY_STG_ENG = @"568ed8c9-716c-4245-9cea-90d2dd707578";
+NSString * const APPKEY_PROD_ENG = @"db7b8388-cc15-4da7-a6c6-e3576a3614a9";
+
+//StudyIDs
+
+NSString * const STUDYID_DEV_ENG = @"193";
+NSString * const STUDYID_STG_ENG = @"17";
+NSString * const STUDYID_PROD_ENG = @"37";
+
+
+
 
 //Fonts
 NSString * const mainFont = @"FirstConstant";

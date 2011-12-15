@@ -104,5 +104,6 @@
 -(IBAction)clickedSettings;
 -(IBAction)clickedCancel;
 -(void)switchButtons;
+-(void)showErrorMessage:(NSString*)message;
 
 @end

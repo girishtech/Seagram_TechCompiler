@@ -7,6 +7,7 @@
 //
 
 #import "DataCollection_Full_ViewController.h"
+#import "PhotoConsentViewController.h"
 
 
 @implementation DataCollection_Full_ViewController
@@ -789,9 +790,13 @@
             {
                 [[appDelegate rootVC] hideHeader];
             }
-            
-            QuestionListViewController *questionListVC = [[QuestionListViewController alloc] initWithNibName:@"QuestionListViewController" bundle:nil];
+  
+            PhotoConsentViewController *questionListVC = [[PhotoConsentViewController alloc] initWithNibName:@"PhotoConsentViewController" bundle:nil];
             [[[appDelegate rootVC] navController] pushViewController:questionListVC animated:YES];
+
+            
+//            QuestionListViewController *questionListVC = [[QuestionListViewController alloc] initWithNibName:@"QuestionListViewController" bundle:nil];
+//            [[[appDelegate rootVC] navController] pushViewController:questionListVC animated:YES];
         }else{
             if(HIDES_HEADER_ON_THANKYOU_PAGE)
             {
@@ -911,12 +916,12 @@
         if([address_2.text isEqualToString:@""]){
             address_2.text = @" ";
         }
-        if([city.text isEqualToString:@""]){
-            [[appDelegate rootVC]showErrorMessage:@"Please enter a city."];
-            [city becomeFirstResponder];
-            city.highlighted = YES;
-            return NO;
-        }
+//        if([city.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Please enter a city."];
+//            [city becomeFirstResponder];
+//            city.highlighted = YES;
+//            return NO;
+//        }
         if([state.text isEqualToString:@""]){
             [[appDelegate rootVC]showErrorMessage:@"Please enter a state."];
             [state becomeFirstResponder];

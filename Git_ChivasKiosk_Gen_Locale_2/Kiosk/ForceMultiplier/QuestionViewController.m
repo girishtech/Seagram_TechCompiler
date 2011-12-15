@@ -8,6 +8,8 @@
 
 #import "QuestionViewController.h"
 
+#import "DataCollection_Abbr_ViewController.h"
+
 
 @implementation QuestionViewController
 
@@ -202,6 +204,17 @@
                 
 - (IBAction)nextView
 {
+    // Girish Start
+    ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+ //   ThankYouPurchaseViewController *thankYouVC = [[ThankYouPurchaseViewController alloc] initWithNibName:@"ThankYouPurchaseViewController" bundle:nil];
+    
+//    [[[appDelegate rootVC] navController] pushViewController:thankYouVC animated:YES];    return;
+    // End
+    
+    
+    
+    
     NSMutableArray *selectedAnswers = [[NSMutableArray alloc] initWithCapacity:0];
     NSString *otherTextFieldAnswer = nil;
     int index = 0;
@@ -219,7 +232,7 @@
         otherTextFieldAnswer = otherTextField.text;
     }
     
-    ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
+//    ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
     
     if([selectedAnswers count]>=[[data objectForKey:@"min"]integerValue])
     {
