@@ -183,10 +183,9 @@
 		C4777BA413B4EAD300A5E3B6 /* OnlineSessionEnableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4777BA213B4EAD300A5E3B6 /* OnlineSessionEnableViewController.m */; };
 		C4777BA513B4EAD300A5E3B6 /* OnlineSessionEnableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4777BA313B4EAD300A5E3B6 /* OnlineSessionEnableViewController.xib */; };
 		D90B80351498B8E400038484 /* SeagramFooter.png in Resources */ = {isa = PBXBuildFile; fileRef = D90B80321498B8E400038484 /* SeagramFooter.png */; };
-		D90B80361498B8E400038484 /* SeagramHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = D90B80331498B8E400038484 /* SeagramHeader.png */; };
 		D90B80371498B8E400038484 /* Thankyou.png in Resources */ = {isa = PBXBuildFile; fileRef = D90B80341498B8E400038484 /* Thankyou.png */; };
 		D90B803A1498B91400038484 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D90B80391498B91400038484 /* Default.png */; };
-		D9CDEAC21495DAEE00E13C21 /* SeagramHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = D9CDEAC11495DAEE00E13C21 /* SeagramHeader.png */; };
+		D91EFFAC149B14EC006A8FFF /* SeagramHeader2.png in Resources */ = {isa = PBXBuildFile; fileRef = D91EFFAB149B14EC006A8FFF /* SeagramHeader2.png */; };
 		D9CDEAC51496039900E13C21 /* Seagramfooter.png in Resources */ = {isa = PBXBuildFile; fileRef = D9CDEAC41496039900E13C21 /* Seagramfooter.png */; };
 /* End PBXBuildFile section */
 
@@ -459,10 +458,9 @@
 		C4777BA213B4EAD300A5E3B6 /* OnlineSessionEnableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineSessionEnableViewController.m; sourceTree = "<group>"; };
 		C4777BA313B4EAD300A5E3B6 /* OnlineSessionEnableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnlineSessionEnableViewController.xib; sourceTree = "<group>"; };
 		D90B80321498B8E400038484 /* SeagramFooter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeagramFooter.png; sourceTree = "<group>"; };
-		D90B80331498B8E400038484 /* SeagramHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeagramHeader.png; sourceTree = "<group>"; };
 		D90B80341498B8E400038484 /* Thankyou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Thankyou.png; sourceTree = "<group>"; };
 		D90B80391498B91400038484 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		D9CDEAC11495DAEE00E13C21 /* SeagramHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeagramHeader.png; sourceTree = "<group>"; };
+		D91EFFAB149B14EC006A8FFF /* SeagramHeader2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeagramHeader2.png; sourceTree = "<group>"; };
 		D9CDEAC41496039900E13C21 /* Seagramfooter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Seagramfooter.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -541,12 +539,11 @@
 		95798EC213ABB8A4000EFE58 = {
 			isa = PBXGroup;
 			children = (
+				D91EFFAB149B14EC006A8FFF /* SeagramHeader2.png */,
 				D90B80391498B91400038484 /* Default.png */,
 				D90B80321498B8E400038484 /* SeagramFooter.png */,
-				D90B80331498B8E400038484 /* SeagramHeader.png */,
 				D90B80341498B8E400038484 /* Thankyou.png */,
 				D9CDEAC41496039900E13C21 /* Seagramfooter.png */,
-				D9CDEAC11495DAEE00E13C21 /* SeagramHeader.png */,
 				9569BDF41451B1F400032C3C /* libz.1.2.5.dylib */,
 				95A0FBB114587D70000D2B50 /* Constants.h */,
 				95A0FBB214587D70000D2B50 /* Constants.m */,
@@ -1263,12 +1260,11 @@
 				95A0FBB014587D10000D2B50 /* HomeViewController.xib in Resources */,
 				95A0FBB5145886E3000D2B50 /* Background.png in Resources */,
 				95A0FBB714588BD9000D2B50 /* BlankButton.png in Resources */,
-				D9CDEAC21495DAEE00E13C21 /* SeagramHeader.png in Resources */,
 				D9CDEAC51496039900E13C21 /* Seagramfooter.png in Resources */,
 				D90B80351498B8E400038484 /* SeagramFooter.png in Resources */,
-				D90B80361498B8E400038484 /* SeagramHeader.png in Resources */,
 				D90B80371498B8E400038484 /* Thankyou.png in Resources */,
 				D90B803A1498B91400038484 /* Default.png in Resources */,
+				D91EFFAC149B14EC006A8FFF /* SeagramHeader2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -375,15 +375,9 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<bool key="IBUIEnabled">NO</bool>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUIText">PRUSA - Chivas</string>
+								<string key="IBUIText">PRUSA - Seagram's</string>
 								<int key="IBUIBorderStyle">3</int>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MAA</bytes>
-									<object class="NSColorSpace" key="NSCustomColorSpace" id="1042731595">
-										<int key="NSID">2</int>
-									</object>
-								</object>
+								<reference key="IBUITextColor" ref="119080963"/>
 								<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 								<float key="IBUIMinimumFontSize">17</float>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -493,7 +487,7 @@
 							<object class="IBUIButton" id="451979860">
 								<reference key="NSNextResponder" ref="589652147"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{614, 253}, {84, 37}}</string>
+								<string key="NSFrame">{{614, 252}, {84, 37}}</string>
 								<reference key="NSSuperview" ref="589652147"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="705595291"/>
@@ -502,14 +496,13 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">SET</string>
 								<reference key="IBUIHighlightedTitleColor" ref="119080963"/>
 								<reference key="IBUIDisabledTitleColor" ref="263265127"/>
 								<reference key="IBUINormalTitleColor" ref="119080963"/>
 								<reference key="IBUINormalTitleShadowColor" ref="849548429"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="625616555">
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">BlankButton.png</string>
+									<string key="NSResourceName">Set.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="262058146"/>
 								<reference key="IBUIFont" ref="785061180"/>
@@ -517,7 +510,7 @@
 							<object class="IBUIButton" id="705595291">
 								<reference key="NSNextResponder" ref="589652147"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{701, 253}, {84, 37}}</string>
+								<string key="NSFrame">{{701, 252}, {84, 37}}</string>
 								<reference key="NSSuperview" ref="589652147"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="936958968"/>
@@ -526,12 +519,14 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">RESET</string>
 								<reference key="IBUIHighlightedTitleColor" ref="119080963"/>
 								<reference key="IBUIDisabledTitleColor" ref="263265127"/>
 								<reference key="IBUINormalTitleColor" ref="119080963"/>
 								<reference key="IBUINormalTitleShadowColor" ref="849548429"/>
-								<reference key="IBUINormalBackgroundImage" ref="625616555"/>
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">Reset.png</string>
+								</object>
 								<reference key="IBUIFontDescription" ref="262058146"/>
 								<reference key="IBUIFont" ref="785061180"/>
 							</object>
@@ -696,6 +691,7 @@
 								<string key="NSFrame">{{290, 568}, {319, 37}}</string>
 								<reference key="NSSuperview" ref="589652147"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -755,7 +751,9 @@
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
-									<reference key="NSCustomColorSpace" ref="1042731595"/>
+									<object class="NSColorSpace" key="NSCustomColorSpace" id="1042731595">
+										<int key="NSID">2</int>
+									</object>
 								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 								<float key="IBUIMinimumFontSize">17</float>
@@ -1028,9 +1026,9 @@
 							<reference ref="202421798"/>
 							<reference ref="876978966"/>
 							<reference ref="891888023"/>
-							<reference ref="451979860"/>
 							<reference ref="705595291"/>
 							<reference ref="355624055"/>
+							<reference ref="451979860"/>
 						</object>
 						<reference key="parent" ref="266468974"/>
 					</object>
@@ -1528,15 +1526,17 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>BlankButton.png</string>
 				<string>GoButton.png</string>
+				<string>Reset.png</string>
 				<string>SaveButton.png</string>
+				<string>Set.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{123, 31}</string>
+				<string>{84, 37}</string>
 				<string>{123, 31}</string>
-				<string>{123, 31}</string>
+				<string>{84, 37}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>

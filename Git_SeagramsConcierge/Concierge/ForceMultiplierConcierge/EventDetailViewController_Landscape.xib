@@ -121,7 +121,7 @@
 							<integer value="0" key="IBUIAccessibilityTraits"/>
 						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">Seagrans</string>
+						<string key="IBUIText">Seagram's</string>
 						<reference key="IBUITextColor" ref="568224187"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>

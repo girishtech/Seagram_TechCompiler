@@ -49,10 +49,10 @@
 							<object class="IBUILabel" id="181937331">
 								<reference key="NSNextResponder" ref="269460389"/>
 								<int key="NSvFlags">261</int>
-								<string key="NSFrame">{{20, 161}, {568, 143}}</string>
+								<string key="NSFrame">{{109, 214}, {430, 143}}</string>
 								<reference key="NSSuperview" ref="269460389"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="26485866"/>
+								<reference key="NSNextKeyView" ref="813024678"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -62,7 +62,7 @@
 								<int key="IBUIContentMode">9</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">Yes: I would like to receive future communications from Seagram Gin.</string>
+								<string key="IBUIText">I would like to receive future communications from Seagram's Gin. You must be of legal drinking age in the country in which you are in. Bt entering you agree to our terms and conditions and our privacy policy</string>
 								<object class="NSColor" key="IBUITextColor" id="1285021">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -72,26 +72,27 @@
 									<bytes key="NSRGB">MC40MjM0NjkzOTQ0IDAuNDIzNDY5Mzk0NCAwLjQyMzQ2OTM5NDQgMAA</bytes>
 								</object>
 								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">3</int>
+								<int key="IBUINumberOfLines">5</int>
 								<int key="IBUITextAlignment">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">Helvetica-Bold</string>
-									<string key="family">Helvetica</string>
-									<int key="traits">2</int>
-									<double key="pointSize">18</double>
+									<string key="name">ZapfDingbatsITC</string>
+									<string key="family">Zapf Dingbats</string>
+									<int key="traits">0</int>
+									<double key="pointSize">16</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">18</double>
+									<string key="NSName">ZapfDingbatsITC</string>
+									<double key="NSSize">16</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
 							<object class="IBUIButton" id="26485866">
 								<reference key="NSNextResponder" ref="269460389"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{169, 321}, {271, 30}}</string>
+								<string key="NSFrame">{{169, 356}, {271, 30}}</string>
 								<reference key="NSSuperview" ref="269460389"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -131,6 +132,7 @@
 								<string key="NSFrame">{{184, 20}, {240, 188}}</string>
 								<reference key="NSSuperview" ref="269460389"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="26485866"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -223,8 +225,8 @@
 						<reference key="object" ref="269460389"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="181937331"/>
 							<reference ref="813024678"/>
+							<reference ref="181937331"/>
 							<reference ref="26485866"/>
 						</object>
 						<reference key="parent" ref="654513165"/>
