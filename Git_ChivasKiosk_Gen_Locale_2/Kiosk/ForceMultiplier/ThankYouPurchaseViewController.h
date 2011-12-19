@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 @class TabbedViewController;
 @class OrderViewController;
 @class ForceMultiplierAppDelegate;
 
 @interface ThankYouPurchaseViewController : UIViewController {
+    UIImageView *imageView;
     
 }
 
--(IBAction)nextView;
+@property (nonatomic, retain) IBOutlet UIImageView *imageView;
 
+-(IBAction)nextView;
+- (IBAction) viewImage;
 @end

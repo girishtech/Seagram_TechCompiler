@@ -6,10 +6,17 @@
 //  Copyright 2011 Rochester Institute of Technology. All rights reserved.
 //
 
+
 #import "ThankYouPurchaseViewController.h"
+#import "TakePhotoViewController.h"
+
+
+
 
 
 @implementation ThankYouPurchaseViewController
+
+@synthesize imageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -81,6 +88,40 @@
 //    [self.navigationController popToRootViewControllerAnimated:YES];
 //    
     // shahab close commented
+}
+- (NSString*)imagePath {
+    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    documentDirectory = [documentDirectory stringByAppendingPathComponent:@"EventImages"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:documentDirectory]) {
+        NSError *error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:documentDirectory withIntermediateDirectories:NO attributes:nil error:&error];
+    }
+    //NSString *fullpath = [documentDirectory stringByAppendingPathComponent:@"Hello.JPEG"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *sPath = [defaults valueForKey:@"kiosk_currentSessionName"];
+    //   sPath = [sPath stringByAppendingPathComponent:@"_"];
+    //   sPath = [sPath stringByAppendingPathComponent:[defaults valueForKey:@"kiosk_currentSessionName"]];
+    
+    NSString *fullpath = [documentDirectory stringByAppendingPathComponent:sPath];
+    
+    return fullpath;
+}
+- (IBAction) viewImage {
+    
+    UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfFile:[self imagePath]]];
+    
+    if (img==nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"hi" message:@"Image not found" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    
+    UIImageView *imgVw = [[UIImageView alloc] initWithFrame:CGRectMake(380,150, 680, 450)];
+    imgVw.image = img;
+    [imgVw setContentMode:UIViewContentModeScaleAspectFit];
+    [self.view addSubview:imgVw];
+    [imgVw release];
+    
 }
 
 @end

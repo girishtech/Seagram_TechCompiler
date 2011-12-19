@@ -212,6 +212,8 @@
        
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:da.currentSession forKey:@"kiosk_currentSession"];
+                
+                
                 [defaults setObject:[[rawDataSet objectForKey:@"names"]objectAtIndex:rowID] forKey:@"kiosk_currentSessionName"];
         
         ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];

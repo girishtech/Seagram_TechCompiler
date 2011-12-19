@@ -8,6 +8,8 @@
 
 #import "RootViewController.h"
 #import "OrderViewController.h"
+#import "TakePhotoViewController.h"
+#import "PhotoConsentViewController.h"
 
 @implementation RootViewController
 
@@ -83,8 +85,9 @@
    
     if([defaults valueForKey:@"kiosk_currentSessionName"]!=nil){
         [self setEventNameText:[defaults valueForKey:@"kiosk_currentSessionName"]];
+        
     }
-    
+    NSString * sId=  [defaults valueForKey:@"kiosk_currentSessionName"];
     [self.legal1 setFont:[UIFont fontWithName:@"TradeGothicLT-BoldCondTwenty" 
                                          size:self.legal1.font.pointSize]];
     [self.legal2 setFont:[UIFont fontWithName:@"TradeGothicLT-BoldCondTwenty" 
@@ -601,4 +604,21 @@
 {
     NSLog(@"sender: %@",sender);
 }
+
+
+- (void) showTakePhotoViewControllerDelegate:(id) photodelegate {
+    PhotoConsentViewController *consentViewController = (PhotoConsentViewController*)photodelegate;
+    TakePhotoViewController *takePhoto = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
+    takePhoto.delegate = self;
+    takePhoto.currentViewController = consentViewController;
+    [self presentModalViewController:takePhoto animated:YES];
+    [takePhoto release];
+}
+
+- (void) takePhotoViewController:(TakePhotoViewController*)takePhotoViewController imageDidCaptured :(UIImage*)image {
+    PhotoConsentViewController *consentViewController = (PhotoConsentViewController*)takePhotoViewController.currentViewController;
+    [consentViewController imageRecieved:image];
+    [self dismissModalViewControllerAnimated:NO];
+}
+
 @end

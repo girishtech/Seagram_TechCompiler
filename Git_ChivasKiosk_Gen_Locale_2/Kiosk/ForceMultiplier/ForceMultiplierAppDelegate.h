@@ -56,7 +56,7 @@
 // shahab open
 
 -(BOOL) autoLogin;
-
+- (void) showTakePhotoViewController;
 // shahab close
 
 

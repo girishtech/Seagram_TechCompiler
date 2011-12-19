@@ -105,5 +105,6 @@
 -(IBAction)clickedCancel;
 -(void)switchButtons;
 -(void)showErrorMessage:(NSString*)message;
+- (void) showTakePhotoViewControllerDelegate:(id) photodelegate;
 
 @end

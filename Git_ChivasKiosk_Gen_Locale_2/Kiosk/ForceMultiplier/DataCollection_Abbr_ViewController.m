@@ -813,6 +813,12 @@
             telephone_3.text = @" ";
         }
     }
+    
+    // girish
+    //[[NSUserDefaults standardUserDefaults] setString:email.text forKey:@"user_email"];
+    // end
+    
+    
     return YES;
 }
 

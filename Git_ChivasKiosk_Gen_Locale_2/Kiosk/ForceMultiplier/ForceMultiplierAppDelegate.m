@@ -12,6 +12,7 @@
 #import "HomeViewController.h"
 #import "BlankViewController.h"
 //#import "AuthorizedConnector.h"
+#import "TakePhotoViewController.h"
 
 @implementation ForceMultiplierAppDelegate
 
@@ -462,6 +463,13 @@
         return NO;
     }
     
+}
+
+- (void) showTakePhotoViewController {
+    TakePhotoViewController *takePhoto = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
+    //takePhoto.view.frame = CGRectMake(0, 0,1024, 1024);
+    [self.window addSubview:takePhoto.view];
+    //[takePhoto release];
 }
 
 // shahab close

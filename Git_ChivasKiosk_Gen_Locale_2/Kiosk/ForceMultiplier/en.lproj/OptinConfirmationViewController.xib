@@ -15,7 +15,6 @@
 			<string>IBUIButton</string>
 			<string>IBUIImageView</string>
 			<string>IBUIView</string>
-			<string>IBUILabel</string>
 			<string>IBProxyObject</string>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -46,53 +45,12 @@
 						<int key="NSvFlags">301</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUILabel" id="181937331">
-								<reference key="NSNextResponder" ref="269460389"/>
-								<int key="NSvFlags">261</int>
-								<string key="NSFrame">{{109, 214}, {430, 143}}</string>
-								<reference key="NSSuperview" ref="269460389"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="813024678"/>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MCAwAA</bytes>
-								</object>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">9</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">I would like to receive future communications from Seagram's Gin. You must be of legal drinking age in the country in which you are in. Bt entering you agree to our terms and conditions and our privacy policy</string>
-								<object class="NSColor" key="IBUITextColor" id="1285021">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAxIDEAA</bytes>
-								</object>
-								<object class="NSColor" key="IBUIHighlightedColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC40MjM0NjkzOTQ0IDAuNDIzNDY5Mzk0NCAwLjQyMzQ2OTM5NDQgMAA</bytes>
-								</object>
-								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">5</int>
-								<int key="IBUITextAlignment">1</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">ZapfDingbatsITC</string>
-									<string key="family">Zapf Dingbats</string>
-									<int key="traits">0</int>
-									<double key="pointSize">16</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">ZapfDingbatsITC</string>
-									<double key="NSSize">16</double>
-									<int key="NSfFlags">16</int>
-								</object>
-							</object>
 							<object class="IBUIButton" id="26485866">
 								<reference key="NSNextResponder" ref="269460389"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{169, 356}, {271, 30}}</string>
 								<reference key="NSSuperview" ref="269460389"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -101,7 +59,10 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
-								<reference key="IBUINormalTitleColor" ref="1285021"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MSAxIDEAA</bytes>
+								</object>
 								<object class="NSColor" key="IBUINormalTitleShadowColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
@@ -140,11 +101,24 @@
 									<string key="NSResourceName">SignUpLogo.png</string>
 								</object>
 							</object>
+							<object class="IBUIImageView" id="470146788">
+								<reference key="NSNextResponder" ref="269460389"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{187, 216}, {240, 128}}</string>
+								<reference key="NSSuperview" ref="269460389"/>
+								<reference key="NSWindow"/>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">communicrions.png</string>
+								</object>
+							</object>
 						</object>
 						<string key="NSFrame">{{205, 10}, {615, 639}}</string>
 						<reference key="NSSuperview" ref="654513165"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="181937331"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MSAwAA</bytes>
@@ -226,15 +200,10 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="813024678"/>
-							<reference ref="181937331"/>
 							<reference ref="26485866"/>
+							<reference ref="470146788"/>
 						</object>
 						<reference key="parent" ref="654513165"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="181937331"/>
-						<reference key="parent" ref="269460389"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">7</int>
@@ -244,6 +213,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
 						<reference key="object" ref="813024678"/>
+						<reference key="parent" ref="269460389"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">14</int>
+						<reference key="object" ref="470146788"/>
 						<reference key="parent" ref="269460389"/>
 					</object>
 				</object>
@@ -257,9 +231,9 @@
 					<string>-2.CustomClassName</string>
 					<string>-2.IBPluginDependency</string>
 					<string>13.IBPluginDependency</string>
+					<string>14.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
-					<string>6.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 					<string>7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 				</object>
@@ -289,7 +263,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">13</int>
+			<int key="maxID">14</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -389,12 +363,14 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>BlankButton.png</string>
 				<string>SignUpLogo.png</string>
+				<string>communicrions.png</string>
 				<string>signup.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{123, 31}</string>
 				<string>{264, 233}</string>
+				<string>{293, 114}</string>
 				<string>{271, 30}</string>
 			</object>
 		</object>
