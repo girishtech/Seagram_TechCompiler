@@ -186,6 +186,7 @@
 		D90B80371498B8E400038484 /* Thankyou.png in Resources */ = {isa = PBXBuildFile; fileRef = D90B80341498B8E400038484 /* Thankyou.png */; };
 		D90B803A1498B91400038484 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D90B80391498B91400038484 /* Default.png */; };
 		D91EFFAC149B14EC006A8FFF /* SeagramHeader2.png in Resources */ = {isa = PBXBuildFile; fileRef = D91EFFAB149B14EC006A8FFF /* SeagramHeader2.png */; };
+		D9A23FCB14A0961E004F4565 /* icon_seagrams.png in Resources */ = {isa = PBXBuildFile; fileRef = D9A23FCA14A0961E004F4565 /* icon_seagrams.png */; };
 		D9CDEAC51496039900E13C21 /* Seagramfooter.png in Resources */ = {isa = PBXBuildFile; fileRef = D9CDEAC41496039900E13C21 /* Seagramfooter.png */; };
 /* End PBXBuildFile section */
 
@@ -461,6 +462,7 @@
 		D90B80341498B8E400038484 /* Thankyou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Thankyou.png; sourceTree = "<group>"; };
 		D90B80391498B91400038484 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D91EFFAB149B14EC006A8FFF /* SeagramHeader2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeagramHeader2.png; sourceTree = "<group>"; };
+		D9A23FCA14A0961E004F4565 /* icon_seagrams.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_seagrams.png; sourceTree = "<group>"; };
 		D9CDEAC41496039900E13C21 /* Seagramfooter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Seagramfooter.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -539,6 +541,7 @@
 		95798EC213ABB8A4000EFE58 = {
 			isa = PBXGroup;
 			children = (
+				D9A23FCA14A0961E004F4565 /* icon_seagrams.png */,
 				D91EFFAB149B14EC006A8FFF /* SeagramHeader2.png */,
 				D90B80391498B91400038484 /* Default.png */,
 				D90B80321498B8E400038484 /* SeagramFooter.png */,
@@ -1265,6 +1268,7 @@
 				D90B80371498B8E400038484 /* Thankyou.png in Resources */,
 				D90B803A1498B91400038484 /* Default.png in Resources */,
 				D91EFFAC149B14EC006A8FFF /* SeagramHeader2.png in Resources */,
+				D9A23FCB14A0961E004F4565 /* icon_seagrams.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

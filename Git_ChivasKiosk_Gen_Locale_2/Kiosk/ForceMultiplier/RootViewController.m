@@ -17,7 +17,7 @@
 @synthesize optInVC;
 @synthesize loginVC;
 @synthesize orderVC;
-
+@synthesize emailAddress;
 
 //@synthesize daController;
 
@@ -50,6 +50,7 @@
 
 - (void)dealloc
 {
+    [emailAddress release];
     [super dealloc];
     //[daController release];
     [navController release];
@@ -611,7 +612,7 @@
     TakePhotoViewController *takePhoto = [[TakePhotoViewController alloc] initWithNibName:@"TakePhotoViewController" bundle:nil];
     takePhoto.delegate = self;
     takePhoto.currentViewController = consentViewController;
-    [self presentModalViewController:takePhoto animated:YES];
+    [self presentModalViewController:takePhoto animated:NO];
     [takePhoto release];
 }
 

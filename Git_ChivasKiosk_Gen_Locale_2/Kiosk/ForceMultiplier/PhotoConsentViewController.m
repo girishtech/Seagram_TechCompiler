@@ -9,6 +9,7 @@
 #import "TabbedViewController.h"
 #import "TakePhotoViewController.h"
 #import "ForceMultiplierAppDelegate.h"
+#import "RootViewController.h"
 
 @implementation PhotoConsentViewController
 
@@ -113,6 +114,7 @@
         [[appDelegate rootVC] hideErrorMessage];
         
         [[[appDelegate rootVC] navController] pushViewController:thankYouVC animated:YES];
+        [thankYouVC release];
 
     }
     
@@ -164,8 +166,18 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     return @"iuiu";
 }
 
+-(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();    
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+
 - (void) saveImage:(UIImage*)image withName:(NSString*)name {
-    NSData *data = UIImageJPEGRepresentation(image, 1.0f);
+    image = [self imageWithImage:image scaledToSize:CGSizeMake(464, 384)];
+    NSData *data = UIImagePNGRepresentation(image);
    
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     documentDirectory = [documentDirectory stringByAppendingPathComponent:@"EventImages"];
@@ -177,24 +189,25 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [[NSFileManager defaultManager] createFileAtPath:fullpath contents:data attributes:nil];
 }
 
+
+
 - (void) imageRecieved :(UIImage*)image {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *sPath = [defaults valueForKey:@"kiosk_currentSessionName"];
- //   sPath = [sPath stringByAppendingPathComponent:@"_"];
- //   sPath = [sPath stringByAppendingPathComponent:[defaults valueForKey:@"kiosk_currentSessionName"]];
-    //[self saveImage:image withName:@"Hello.JPEG"];
-    [self saveImage:image withName:sPath];
+    ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
+    DataAccess *da = [appDelegate da];
+    NSString *imagename = [NSString stringWithFormat:@"%@_%@.PNG",da.currentSession,[appDelegate rootVC].emailAddress];
+    [self saveImage:image withName:imagename];
     
     isAgreed = YES;
     TabbedViewController *tabbedVC = [[self.navigationController viewControllers]objectAtIndex:1];
     [[tabbedVC dc_abbrVC]clearFields];
     
     ThankYouPurchaseViewController *thankYouVC = [[ThankYouPurchaseViewController alloc] initWithNibName:@"ThankYouPurchaseViewController" bundle:nil];
-    
-    ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication]delegate];
+
     [[appDelegate rootVC] hideErrorMessage];
     
     [[[appDelegate rootVC] navController] pushViewController:thankYouVC animated:NO];
+     [thankYouVC release];
 }
 
 - (NSString*)imagePath {
@@ -207,8 +220,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     //NSString *fullpath = [documentDirectory stringByAppendingPathComponent:@"Hello.JPEG"];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *sPath = [defaults valueForKey:@"kiosk_currentSessionName"];
- //   sPath = [sPath stringByAppendingPathComponent:@"_"];
- //   sPath = [sPath stringByAppendingPathComponent:[defaults valueForKey:@"kiosk_currentSessionName"]];
+
 
     NSString *fullpath = [documentDirectory stringByAppendingPathComponent:sPath];
     

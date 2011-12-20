@@ -8,10 +8,11 @@
 
 #import "DataCollection_Abbr_ViewController.h"
 #import "PhotoConsentViewController.h"
+#import "RootViewController.h"
 
 @implementation DataCollection_Abbr_ViewController
 
-@synthesize content,firstName,lastName,day,month,year,email,telephone_1,telephone_2,telephone_3,zip,accountName,optIn,next_btn,disclaimer,isEditing,keyboardIsShown,context,person,person_update,person_archive,disclaimerText,currentOffset,popoverY,rightSide,popoverShown;
+@synthesize content,firstName,lastName,day,month,year,email,telephone_1,telephone_2,telephone_3,zip,accountName,optIn,next_btn,disclaimer,isEditing,keyboardIsShown,context,person,person_update,person_archive,disclaimerText,currentOffset,popoverY,rightSide,popoverShown, dob;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,6 +29,7 @@
 
 - (void)dealloc
 {
+    [dob release];
     [super dealloc];
 }
 
@@ -149,6 +151,7 @@
    /* 
     NSLog(@"orientationDidChange -\n  new device orientation = %d \n new statusbar orientation = %d \n", [[UIDevice currentDevice] orientation],[UIApplication sharedApplication].statusBarOrientation);
     //*/
+
     [self _layoutPage];
 }
 
@@ -249,7 +252,7 @@
 -(void)_displayPickerPopover 
 {
     popoverShown = YES;
-    /*
+    
     ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
     UIScrollView *masterScroll = [[appDelegate rootVC] scrollView];
     
@@ -268,19 +271,18 @@
     
 	[popOverControllerWithPicker presentPopoverFromRect:CGRectMake(positionOfPopover.x, positionOfPopover.y, sizeOfPopover.width, sizeOfPopover.height)
 												 inView:self.rightSide permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-     */
+     
 }
 
 -(IBAction)clickedDOB
 {
-    //[self displayPickerPopover];
+    [self displayPickerPopover];
 }
 
 -(void)valuesDidChangeTo:(NSDictionary*)values
 {
     NSLog(@"New Values: %@",values);
-    
-    //dob.text = [self parseDate:[values objectForKey:@"date"]];
+    [dob setTitle:[self parseDate:[values objectForKey:@"date"]] forState:UIControlStateNormal];
 }
 
 -(void)popoverShown
@@ -655,6 +657,25 @@
     // newDateString 10:30 on Sunday July 11
 }
 
+-(NSDate*) parseDateString1:(NSString*)aDateString{
+    NSLog(@"a DateString: %@",aDateString);
+    //aDateString = [aDateString substringToIndex:18];
+    //NSLog(@"a DateString: %@",aDateString);
+    
+    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+    [outputFormatter setDateFormat:@"MMMM dd, yyyy"];
+    
+    NSDate *newDate = [outputFormatter dateFromString:aDateString];
+    
+    
+	[outputFormatter release];
+	
+    return newDate;
+    // For US English, the output is:
+    // newDateString 10:30 on Sunday July 11
+}
+
+
 -(Boolean)validateFields
 {
     ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -697,35 +718,39 @@
             email.highlighted = YES;
             return NO;
         }
-        if([month.text isEqualToString:@""]){
-            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
-            [month becomeFirstResponder];
+        if (self.dob.titleLabel.text==nil || [self.dob.titleLabel.text isEqualToString:@""]) {
+            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
             return NO;
         }
-        if([day.text isEqualToString:@""]){
-            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
-            [month becomeFirstResponder];
-            return NO;
-        }
-        if([year.text isEqualToString:@""]){
-            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
-            [month becomeFirstResponder];
-            return NO;
-        }else{
-            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-            NSDate *currentDate = [NSDate date];
-            NSDateComponents *comps = [[NSDateComponents alloc] init];
-            [comps setYear:-21];
-            NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-            
-            NSDate *birthDate = [self parseDateString:[NSString stringWithFormat:@"%@/%@/19%@",month.text,day.text,year.text]];
-            
-            if([birthDate compare:maxDate] == NSOrderedDescending){
-                [[appDelegate rootVC]showErrorMessage:@"Must be over 21 years of age."];
-                [month becomeFirstResponder];
-                return NO;
-            }
-        }
+//        if([month.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
+//            [month becomeFirstResponder];
+//            return NO;
+//        }
+//        if([day.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
+//            [month becomeFirstResponder];
+//            return NO;
+//        }
+//        if([year.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
+//            [month becomeFirstResponder];
+//            return NO;
+//        }else{
+//            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//            NSDate *currentDate = [NSDate date];
+//            NSDateComponents *comps = [[NSDateComponents alloc] init];
+//            [comps setYear:-21];
+//            NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+//            
+//            NSDate *birthDate = [self parseDateString:[NSString stringWithFormat:@"%@/%@/19%@",month.text,day.text,year.text]];
+//            
+//            if([birthDate compare:maxDate] == NSOrderedDescending){
+//                [[appDelegate rootVC]showErrorMessage:@"Must be over 21 years of age."];
+//                [month becomeFirstResponder];
+//                return NO;
+//            }
+//        }
         if([telephone_1.text isEqualToString:@""]){
             telephone_1.text = @" ";
         }
@@ -774,35 +799,41 @@
             email.highlighted = YES;
             return NO;
         }
-        if([month.text isEqualToString:@""]){
+//        if([month.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
+//            [month becomeFirstResponder];
+//            return NO;
+//        }
+//        if([day.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
+//            [month becomeFirstResponder];
+//            return NO;
+//        }
+//        if([year.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
+//            [month becomeFirstResponder];
+//            return NO;
+//        }else{
+//            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//            NSDate *currentDate = [NSDate date];
+//            NSDateComponents *comps = [[NSDateComponents alloc] init];
+//            [comps setYear:-21];
+//            NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+//            
+//            NSDate *birthDate = [self parseDateString:[NSString stringWithFormat:@"%@/%@/19%@",month.text,day.text,year.text]];
+//            
+//            if([birthDate compare:maxDate] == NSOrderedDescending){
+//                [[appDelegate rootVC]showErrorMessage:@"Debes ser mayor de 21 años."];
+//                [month becomeFirstResponder];
+//                return NO;
+//            }
+//        }
+ 
+        if (self.dob.titleLabel.text==nil || [self.dob.titleLabel.text isEqualToString:@""]) {
             [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
-            [month becomeFirstResponder];
             return NO;
         }
-        if([day.text isEqualToString:@""]){
-            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
-            [month becomeFirstResponder];
-            return NO;
-        }
-        if([year.text isEqualToString:@""]){
-            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
-            [month becomeFirstResponder];
-            return NO;
-        }else{
-            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-            NSDate *currentDate = [NSDate date];
-            NSDateComponents *comps = [[NSDateComponents alloc] init];
-            [comps setYear:-21];
-            NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-            
-            NSDate *birthDate = [self parseDateString:[NSString stringWithFormat:@"%@/%@/19%@",month.text,day.text,year.text]];
-            
-            if([birthDate compare:maxDate] == NSOrderedDescending){
-                [[appDelegate rootVC]showErrorMessage:@"Debes ser mayor de 21 años."];
-                [month becomeFirstResponder];
-                return NO;
-            }
-        }
+        
         if([telephone_1.text isEqualToString:@""]){
             telephone_1.text = @" ";
         }
@@ -837,6 +868,8 @@
     return [emailTest evaluateWithObject:checkString];
 }
 
+
+
 -(void)createPerson
 {
     person = nil;
@@ -850,9 +883,20 @@
     person = [NSEntityDescription insertNewObjectForEntityForName:@"Author" inManagedObjectContext:context];
     
     [person setValue:firstName.text forKey:@"FirstName"];
-    [person setValue:lastName.text forKey:@"LastName"];
-    [person setValue:[[NSString alloc] initWithFormat:@"%@/%@/19%@",month.text,day.text,year.text] forKey:@"DOB"];
+    [person setValue:lastName.text forKey:@"LastName"];    
+    
+    NSDate *dt = [self parseDateString1:dob.titleLabel.text];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:dt];
+     NSInteger day1 = [components day];    
+     NSInteger month1 = [components month];
+     NSInteger year1 = [components year];
+
+    
+    [person setValue:[[NSString alloc] initWithFormat:@"%d/%d/%d",month1,day1,year1] forKey:@"DOB"];
     [person setValue:email.text forKey:@"Email"];
+    
+    [appDelegate rootVC].emailAddress = email.text;
+    
     NSString *telephone = [NSString stringWithFormat:@"%@%@%@",telephone_1.text,telephone_2.text,telephone_3.text];
     [person setValue:telephone forKey:@"Phone"];
     [person setValue:da.currentSession forKey:@"TimeID"];
@@ -872,7 +916,7 @@
     
     [person_update setValue:firstName.text forKey:@"FirstName"];
     [person_update setValue:lastName.text forKey:@"LastName"];
-    [person_update setValue:[[NSString alloc] initWithFormat:@"%@/%@/19%@",month.text,day.text,year.text] forKey:@"DOB"];
+    [person_update setValue:[[NSString alloc] initWithFormat:@"%d/%d/%d",month1,day1,year1] forKey:@"DOB"];
     [person_update setValue:email.text forKey:@"Email"];
     [person_update setValue:telephone forKey:@"Phone"];
     [person_update setValue:da.currentSession forKey:@"TimeID"];
@@ -892,7 +936,7 @@
     
     [person_archive setValue:firstName.text forKey:@"FirstName"];
     [person_archive setValue:lastName.text forKey:@"LastName"];
-    [person_archive setValue:[[NSString alloc] initWithFormat:@"%@/%@/19%@",month.text,day.text,year.text] forKey:@"DOB"];
+    [person_archive setValue:[[NSString alloc] initWithFormat:@"%d/%d/%d",month1,day1,year1] forKey:@"DOB"];
     [person_archive setValue:email.text forKey:@"Email"];
     [person_archive setValue:telephone forKey:@"Phone"];
     [person_archive setValue:da.currentSession forKey:@"TimeID"];
@@ -953,7 +997,6 @@
     }
 }
 
-
 -(void)dismissFirstResponder
 {
     ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -970,11 +1013,17 @@
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
     popoverShown = NO;
+    popoverBuilding = NO;
     NSLog(@"popoverControllerDidDismissPopover:");
     //[popoverController.contentViewController.view resignFirstResponder];
     [self dismissFirstResponder];
 }
 
 //- (void)popoverController
+
+- (IBAction)chooseDOB:(id)sender {
+    [self clickedDOB];
+}
+
 
 @end

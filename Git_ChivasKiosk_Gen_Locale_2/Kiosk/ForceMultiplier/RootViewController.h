@@ -64,6 +64,7 @@
     
     IBOutlet UILabel *legal1;
     IBOutlet UILabel *legal2;
+    NSString *emailAddress;
     
 }
 
@@ -72,7 +73,7 @@
 @property (nonatomic,retain) OptinConfirmationViewController *optInVC;
 @property (nonatomic,retain) LoginViewController *loginVC;
 @property (nonatomic,retain) OrderViewController *orderVC;
-
+@property (nonatomic,retain) NSString *emailAddress;
 
 // Data Controllers
 @property (nonatomic,retain) DataAccess *da;

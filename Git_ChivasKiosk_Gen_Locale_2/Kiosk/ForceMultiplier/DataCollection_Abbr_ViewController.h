@@ -18,6 +18,7 @@
     IBOutlet UIView *content;
     IBOutlet UIView *rightSide;
     IBOutlet UIScrollView *scrollView;
+    IBOutlet UIButton *dob;
     
     //Fields
     IBOutlet UITextField *firstName;
@@ -95,7 +96,7 @@
 
 @property (nonatomic) BOOL popoverShown;
 @property (nonatomic) BOOL popoverBuilding;
-
+@property (nonatomic) IBOutlet UIButton *dob;
 -(IBAction)togglePopOverController;
 
 -(IBAction)selectOptIn;
@@ -107,4 +108,7 @@
 -(id)indexForTextField:(UITextField *)textField;
 
 -(void)clearFields;
+- (IBAction)chooseDOB:(id)sender;
+
+
 @end

@@ -32,9 +32,16 @@
 
 #pragma mark - View lifecycle
 
+- (void) openCamera {
+    [self useCamera:nil];
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor clearColor];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(openCamera) userInfo:nil repeats:NO];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -50,7 +57,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+	return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 - (void)dealloc

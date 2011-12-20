@@ -42,7 +42,6 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{149, 165}, {782, 284}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="578860477"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -53,7 +52,50 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 						<bool key="IBUIEditable">NO</bool>
-						<string key="IBUIText">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+						<string type="base64-UTF8" key="IBUIText">SW4gZXhjaGFuZ2UgZm9yIGdvb2QgYW5kIHZhbHVhYmxlIGNvbnNpZGVyYXRpb24sIHRoZSByZWNlaXB0
+IG9mIHdoaWNoIGlzIGhlcmVieSBhY2tub3dsZWRnZWQsIEkgaGVyZWJ5IGFncmVlIHRvIGFjY2VwdCBh
+bGwgY29uZGl0aW9ucyBzZXQgZm9ydGggaW4gdGhpcyByZWxlYXNlLg1JIGhlcmVieSBnaXZlIFBlcm5v
+ZCBSaWNhcmQgVVNBLCBMTEMgKOKAnFBlcm5vZCBSaWNhcmQgVVNB4oCdKSwgaXRzIHN1Y2Nlc3NvcnMg
+YW5kIGFzc2lnbnMsIGFuZCB0aG9zZSBhY3Rpbmcgd2l0aCB0aGUgYXV0aG9yaXR5IGFuZCBwZXJtaXNz
+aW9uIG9mIFBlcm5vZCBSaWNhcmQgVVNBLCAgdGhlIHVucmVzdHJpY3RlZCByaWdodCBhbmQgcGVybWlz
+c2lvbiB0byBjb3B5cmlnaHQgaW4gaXRzIG93biBuYW1lLCBhbmQgdXNlLCByZXVzZSwgcHVibGlzaCwg
+YW5kIHJlcHVibGlzaCBwaG90b2dyYXBoaWMgcG9ydHJhaXRzLCB2aWRlbywgcGljdHVyZXMsIGFuZC9v
+ciByZWNvcmRpbmdzIG9mIG1lIGFuZC9vciBteSB2b2ljZSBvciBpbiB3aGljaCBJIG1heSBiZSBpbmNs
+dWRlZCBpbnRhY3Qgb3IgaW4gcGFydCAodGhlIOKAnFBob3RvZ3JhcGhz4oCdKSwgaW4gYW55IGZvcm0g
+b2YgbWVkaWEgbm93IGtub3duIG9yIGhlcmVhZnRlciBkZXZlbG9wZWQsIGluY2x1ZGluZyBlbGVjdHJv
+bmljIG9yIGRpZ2l0YWwgbWVkaWEsIGluIGNvbXBvc2l0ZSBvciBkaXN0b3J0ZWQgaW4gY2hhcmFjdGVy
+IG9yIGZvcm0sIHdpdGhvdXQgcmVzdHJpY3Rpb24gYXMgdG8gY2hhbmdlcyBvciB0cmFuc2Zvcm1hdGlv
+bnMgb3IgcmVwcm9kdWN0aW9ucyB0aGVyZW9mIGluIGNvbG9yIG9yIG90aGVyd2lzZSwgYW5kIG1hZGUg
+dGhyb3VnaCBhbnkgbWVkaXVtIG5vdyBvciBoZXJlYWZ0ZXIgdXNlZCwgZm9yIGFueSBpbGx1c3RyYXRp
+b24sIGFkdmVydGlzaW5nLCBwcm9tb3Rpb24sIHB1YmxpY2l0eSwgbWFnYXppbmVzLCBib29rcywgZWRp
+dG9yaWFsIHVzZSwgdHJhZGUgb3IgYW55IG90aGVyIHB1cnBvc2Ugd2hhdHNvZXZlciBvZiBQZXJub2Qg
+UmljYXJkIFVTQS4NSSBoZXJlYnkgd2FpdmUgYW55IHJpZ2h0IHRoYXQgSSBtYXkgaGF2ZSB0byBpbnNw
+ZWN0IG9yIGFwcHJvdmUgdGhlIFBob3RvZ3JhcGhzIG9yIGFueSBhZHZlcnRpc2luZyBvciBlZGl0b3Jp
+YWwgY29weSBvciBvdGhlciBwcmludGVkIG1hdHRlciB0aGF0IG1heSBiZSB1c2VkIGluIGNvbmp1bmN0
+aW9uIHRoZXJld2l0aCBvciBhbnkgdXNlIHRvIHdoaWNoIHRoZSBQaG90b2dyYXBocyBtYXkgYmUgYXBw
+bGllZCB1bmRlciB0aGlzIHJlbGVhc2UuICBJIGFja25vd2xlZGdlIHRoYXQgYWxsIFBob3RvZ3JhcGhz
+IGFuZCBvdGhlciBkb2N1bWVudHMgYXNzb2NpYXRlZCB0aGVyZXdpdGggYXJlIHRoZSBwcm9wZXJ0eSBv
+ZiBQZXJub2QgUmljYXJkIFVTQSBhbmQgd2lsbCBub3QgYmUgcmV0dXJuZWQgdG8gbWUuDUkgaGVyZWJ5
+IHJlbGVhc2UsIGRpc2NoYXJnZSBhbmQgYWdyZWUgdG8gaG9sZCBoYXJtbGVzcyBQZXJub2QgUmljYXJk
+IFVTQSwgaXRzIHN1Y2Nlc3NvcnMgYW5kIGFzc2lnbnMsIGFuZCB0aG9zZSBhY3RpbmcgdW5kZXIgdGhl
+IHBlcm1pc3Npb24gb3IgYXV0aG9yaXR5IG9mIFBlcm5vZCBSaWNhcmQgVVNBLCBmcm9tIGFueSBsaWFi
+aWxpdHkgYnkgdmlydHVlIG9mIGFueSBibHVycmluZywgZGlzdG9ydGlvbiwgYWx0ZXJhdGlvbiwgb3B0
+aWNhbCBpbGx1c2lvbiBvciB1c2UgaW4gY29tcG9zaXRlIGZvcm0sIHdoZXRoZXIgaW50ZW50aW9uYWwg
+b3Igb3RoZXJ3aXNlLCB0aGF0IG1heSBvY2N1ciBvciBiZSBwcm9kdWNlZCBpbiB0aGUgdGFraW5nIG9m
+IHNhaWQgUGhvdG9ncmFwaHMgb3IgYW55IHN1YnNlcXVlbnQgcHJvY2Vzc2luZyB0aGVyZW9mLCBhcyB3
+ZWxsIGJ5IGFueSBwdWJsaWNhdGlvbiB0aGVyZW9mLCBpbmNsdWRpbmcgd2l0aG91dCBsaW1pdGF0aW9u
+LCBhbnkgY2xhaW1zIGZvciBsaWJlbCBvciBpbnZhc2lvbiBvZiBwcml2YWN5LCB1bmxlc3MgaXQgY2Fu
+IGJlIHNob3duIHRoYXQgdGhlIHJlcHJvZHVjdGlvbiB3YXMgbWFsaWNpb3VzbHkgY2F1c2VkLCBwcm9k
+dWNlZCBhbmQgcHVibGlzaGVkIGZvciB0aGUgc29sZSBwdXJwb3NlIG9mIHN1YmplY3RpbmcgbWUgdG8g
+cmlkaWN1bGUsIHNjYW5kYWwsIHJlcHJvYWNoLCBzY29ybiBhbmQgaW5kaWduaXR5Lg1JIHJlcHJlc2Vu
+dCB0aGF0IGVudGVyaW5nIGludG8gdGhpcyBhZ3JlZW1lbnQgZG9lcyBub3QgdmlvbGF0ZSBhbnkgY29t
+bWl0bWVudCBJIGhhdmUgdG8gYW55IHRoaXJkIHBhcnR5LCB0aGF0IGJlZm9yZSBzaWduaW5nIHRoaXMg
+ZG9jdW1lbnQsIEkgaGF2ZSByZWFkIGl0IGNvbXBsZXRlbHkgYW5kIHVuZGVyc3RhbmQgaXQsIGFuZCB0
+aGF0IEkgYW0gYm91bmQgYnkgdGhpcyByZWxlYXNlLCBhcyBpcyBhbnlvbmUgd2hvIHN1Y2NlZWRzIHRv
+IG15IHJlc3BvbnNpYmlsaXRpZXMgYW5kIHJpZ2h0cywgYW5kIG15IGhlaXJzIG9yIGFzc2lnbnMuDUkg
+Y2VydGlmeSB0aGF0IEkgYW0gYXQgbGVhc3QgMjEgeWVhcnMgb2xkLiAgSWYgSSBhbSBwYXJ0aWNpcGF0
+aW5nIGFzIGEgbW9kZWwgYW5kL29yIGluIGEgbW9kZWwgc2VhcmNoLCBJIGNlcnRpZnkgdGhhdCBJIGFt
+IGF0IGxlYXN0IDI1IHllYXJzIG9sZC4NA</string>
 						<object class="NSColor" key="IBUITextColor" id="386287863">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -77,7 +119,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{410, 477}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="229634710"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">1</int>
@@ -112,7 +153,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{643, 477}, {28, 30}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="85169549"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">2</int>
@@ -137,7 +177,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{354, 481}, {46, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="41652435"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -164,7 +203,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{566, 481}, {69, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="322461420"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -184,7 +222,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{476, 550}, {72, 28}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -201,7 +238,6 @@
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{660, 355}, {103, 37}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -220,7 +256,6 @@
 				</array>
 				<string key="NSFrame">{{0, 20}, {1024, 748}}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="247521088"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -393,56 +428,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">16</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">PhotoConsentViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="agreeButtonClicked:">id</string>
-						<string key="nextClicked:">id</string>
-						<string key="viewImage">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="agreeButtonClicked:">
-							<string key="name">agreeButtonClicked:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="nextClicked:">
-							<string key="name">nextClicked:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="viewImage">
-							<string key="name">viewImage</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="agreeButton">UIButton</string>
-						<string key="disagreeButton">UIButton</string>
-						<string key="imageView">UIImageView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="agreeButton">
-							<string key="name">agreeButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="disagreeButton">
-							<string key="name">disagreeButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="imageView">
-							<string key="name">imageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/PhotoConsentViewController.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>

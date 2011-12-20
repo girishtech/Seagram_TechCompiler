@@ -9,9 +9,9 @@
 
 #import "ThankYouPurchaseViewController.h"
 #import "TakePhotoViewController.h"
-
-
-
+#import "RootViewController.h"
+#import "ForceMultiplierAppDelegate.h"
+#import "DataAccess.h"
 
 
 @implementation ThankYouPurchaseViewController
@@ -98,9 +98,13 @@
     }
     //NSString *fullpath = [documentDirectory stringByAppendingPathComponent:@"Hello.JPEG"];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *sPath = [defaults valueForKey:@"kiosk_currentSessionName"];
+   // NSString *sPath = [defaults valueForKey:@"kiosk_currentSessionName"];
     //   sPath = [sPath stringByAppendingPathComponent:@"_"];
     //   sPath = [sPath stringByAppendingPathComponent:[defaults valueForKey:@"kiosk_currentSessionName"]];
+    
+    ForceMultiplierAppDelegate *appdelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
+    DataAccess *da = [appdelegate da];
+    NSString *sPath = [NSString stringWithFormat:@"%@_%@.PNG",da.currentSession,[appdelegate rootVC].emailAddress];
     
     NSString *fullpath = [documentDirectory stringByAppendingPathComponent:sPath];
     

@@ -8,6 +8,7 @@
 
 #import "DataCollection_Full_ViewController.h"
 #import "PhotoConsentViewController.h"
+#import "RootViewController.h"
 
 
 @implementation DataCollection_Full_ViewController
@@ -378,11 +379,11 @@
 
 -(IBAction)clickedDOB
 {
-    /*
-    currentPicker = @"dob";
+    
+    //currentPicker = @"dob";
     
     [self displayPickerPopover];
-     */
+     
 }
 
 -(IBAction)clickedState
@@ -1097,6 +1098,7 @@
     [person setValue:lastName.text forKey:@"LastName"];
     [person setValue:[[NSString alloc] initWithFormat:@"%@/%@/19%@",month.text,day.text,year.text] forKey:@"DOB"];
     [person setValue:email.text forKey:@"Email"];
+    [appDelegate rootVC].emailAddress = email.text;
     NSString *telephone = [NSString stringWithFormat:@"%@%@%@",telephone_1.text,telephone_2.text,telephone_3.text];
     [person setValue:telephone forKey:@"Phone"];
     [person setValue:address_1.text forKey:@"Address1"];
@@ -1225,8 +1227,13 @@
 {
     NSLog(@"popoverControllerDidDismissPopover:");
     popoverShown = NO;
+    popoverBuilding = NO;
     //[popoverController.contentViewController.view resignFirstResponder];
     [self dismissFirstResponder];
+}
+
+- (IBAction)chooseDOB:(id)sender {
+    [self clickedDOB];
 }
 
 @end
