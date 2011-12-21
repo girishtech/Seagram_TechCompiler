@@ -86,7 +86,10 @@
 @property (nonatomic, assign) BOOL busy,isUpdatingCheckIn,isLoadingMarketOnline,isLoadingMarketEventOnline,isLoadingPeopleForDate, isAddingPeople, isUpdatingPeople, diagnosticMode,creatingTestAuthors; 
 
 -(void)addPeople;
-
-
+- (void)nextRequest;
+-(void)addRequestToQueue:(ASIFormDataRequest*)request;
+-(void)checkCount;
+-(void)clearQueue;
+-(void)popRequest;
 
 @end

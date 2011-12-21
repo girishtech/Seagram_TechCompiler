@@ -91,11 +91,13 @@
 }
 - (NSString*)imagePath {
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    /*
     documentDirectory = [documentDirectory stringByAppendingPathComponent:@"EventImages"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:documentDirectory]) {
         NSError *error = nil;
         [[NSFileManager defaultManager] createDirectoryAtPath:documentDirectory withIntermediateDirectories:NO attributes:nil error:&error];
     }
+    // */
     //NSString *fullpath = [documentDirectory stringByAppendingPathComponent:@"Hello.JPEG"];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
    // NSString *sPath = [defaults valueForKey:@"kiosk_currentSessionName"];
@@ -104,10 +106,10 @@
     
     ForceMultiplierAppDelegate *appdelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
     DataAccess *da = [appdelegate da];
-    NSString *sPath = [NSString stringWithFormat:@"%@_%@.PNG",da.currentSession,[appdelegate rootVC].emailAddress];
+    NSString *sPath = [NSString stringWithFormat:@"%@_%@.png",da.currentSession,[appdelegate rootVC].emailAddress];
     
     NSString *fullpath = [documentDirectory stringByAppendingPathComponent:sPath];
-    
+    NSLog(@"### image path created path of %@", fullpath);
     return fullpath;
 }
 - (IBAction) viewImage {

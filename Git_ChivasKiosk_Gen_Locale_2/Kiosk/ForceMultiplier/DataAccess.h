@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "CHCSV.h"
+
 //#import "ForceMultiplierAppDelegate.h"
+
 @class ForceMultiplierAppDelegate;
 @class AuthorizedConnector;
 
@@ -29,13 +31,13 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSPersistentStoreCoordinator *coordinator;
-@property (nonatomic) NSString *currentSession;
+@property (nonatomic, retain) NSString *currentSession;
 @property (nonatomic, retain) AuthorizedConnector *web;
 @property (nonatomic, retain) NSString *brandID;
 @property (nonatomic, assign)  NSInteger mode;
 
 -(NSString*)logoImage;
--(NSMutableArray*)allPeople;
+//-(NSMutableArray*)allPeople;
 -(NSString*)uniqueObjectURIString:(NSManagedObject*)obj;
 -(void)addSession:(NSMutableDictionary*)session;
 @end

@@ -11,40 +11,49 @@
 
 @implementation DataAccess
 
-@synthesize currentSession,brandID, mode;
+@synthesize currentSession;
+@synthesize context = _context;
+@synthesize coordinator = _coordinator;
+@synthesize web;
+@synthesize mode;
+@synthesize brandID;
 
 -(id)init
 {
-    [super init];
-
-    mode = 1;
-    
-    ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
-    context = [appDelegate managedObjectContext];
-    coordinator = [appDelegate persistentStoreCoordinator];
-    web = [appDelegate web];
-    
-    
-    NSLocale *locale = [NSLocale currentLocale];
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    NSLog(language);
-    
-    
-    if([language isEqualToString:@"en"]){
-        //DEV
-        if(RELEASE == 0) self.brandID = STUDYID_DEV_ENG;
-        //STAGING
-        if(RELEASE == 1) self.brandID = STUDYID_STG_ENG;
-        //PRODUCTION
-        if(RELEASE == 2) self.brandID = STUDYID_PROD_ENG;
-    }else{
-        //DEV
-        if(RELEASE == 0) self.brandID = STUDYID_DEV_ES;
-        //STAGING
-        if(RELEASE == 1) self.brandID = STUDYID_STG_ES;
-        //PRODUCTION
-        if(RELEASE == 2) self.brandID = STUDYID_PROD_ES;
+    self = [super init];
+    if (self) {
+        
+        
+        self.mode = 1;
+        
+        ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
+        self.context = [appDelegate managedObjectContext];
+        self.coordinator = [appDelegate persistentStoreCoordinator];
+        self.web = [appDelegate web];
+        
+        
+        //NSLocale *locale = [NSLocale currentLocale];
+        NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        NSLog(@"%@", language);
+        
+        
+        if([language isEqualToString:@"en"]){
+            //DEV
+            if(RELEASE == 0) self.brandID = STUDYID_DEV_ENG;
+            //STAGING
+            if(RELEASE == 1) self.brandID = STUDYID_STG_ENG;
+            //PRODUCTION
+            if(RELEASE == 2) self.brandID = STUDYID_PROD_ENG;
+        }else{
+            //DEV
+            if(RELEASE == 0) self.brandID = STUDYID_DEV_ES;
+            //STAGING
+            if(RELEASE == 1) self.brandID = STUDYID_STG_ES;
+            //PRODUCTION
+            if(RELEASE == 2) self.brandID = STUDYID_PROD_ES;
+        }
     }
+
     //*/ 
     return self;
 }
@@ -60,7 +69,7 @@
     
     // Create a request to fetch all Chefs.
     
-    NSEntityDescription *settingEntity = [NSEntityDescription entityForName:@"Setting" inManagedObjectContext:context];
+    NSEntityDescription *settingEntity = [NSEntityDescription entityForName:@"Setting" inManagedObjectContext:self.context];
     
     NSFetchRequest *settingRequest = [[NSFetchRequest alloc] init];
     [settingRequest setEntity:settingEntity];
@@ -68,22 +77,22 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     
-    settings = [context executeFetchRequest:settingRequest error:&errorGettingSettings];
+    settings = [self.context executeFetchRequest:settingRequest error:&errorGettingSettings];
     
     NSEnumerator *settingEnumerator = [settings objectEnumerator];
-    NSManagedObject *tmp;
+   // NSManagedObject *tmp;
     
     if(!([[settingEnumerator allObjects] count] > 0)){
         NSManagedObject *setting = nil;
         
-        setting = [NSEntityDescription insertNewObjectForEntityForName:@"Setting" inManagedObjectContext:context];
+        setting = [NSEntityDescription insertNewObjectForEntityForName:@"Setting" inManagedObjectContext:self.context];
         
         [setting setValue:[NSNumber numberWithInt:2] forKey:@"Mode"];
         [setting setValue:[NSDate dateWithTimeIntervalSince1970:0] forKey:@"LastSyncTS"];
         
         NSError *errorSavingPerson = nil;
-        if (setting!=nil && [context save:errorGettingSettings] == NO) {
-            [context deleteObject:setting];
+        if (setting!=nil && [self.context save:errorGettingSettings] == NO) {
+            [self.context deleteObject:setting];
             
             setting = nil;
         }
@@ -108,7 +117,7 @@
     
     // Create a request to fetch all Chefs.
     
-    NSEntityDescription *settingEntity = [NSEntityDescription entityForName:@"Setting" inManagedObjectContext:context];
+    NSEntityDescription *settingEntity = [NSEntityDescription entityForName:@"Setting" inManagedObjectContext:self.context];
     
     NSFetchRequest *settingRequest = [[NSFetchRequest alloc] init];
     [settingRequest setEntity:settingEntity];
@@ -116,7 +125,7 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     
-    settings = [context executeFetchRequest:settingRequest error:&errorGettingSettings];
+    settings = [self.context executeFetchRequest:settingRequest error:&errorGettingSettings];
     
     NSEnumerator *settingEnumerator = [settings objectEnumerator];
     NSManagedObject *tmp;
@@ -144,7 +153,7 @@
     
     // Create a request to fetch all Chefs.
     
-    NSEntityDescription *settingEntity = [NSEntityDescription entityForName:@"Setting" inManagedObjectContext:context];
+    NSEntityDescription *settingEntity = [NSEntityDescription entityForName:@"Setting" inManagedObjectContext:self.context];
     
     NSFetchRequest *settingRequest = [[NSFetchRequest alloc] init];
     [settingRequest setEntity:settingEntity];
@@ -152,8 +161,8 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     
-    settings = [context executeFetchRequest:settingRequest error:&errorGettingSettings];
-    [context obtainPermanentIDsForObjects:settings error:&errorGettingSettings];
+    settings = [self.context executeFetchRequest:settingRequest error:&errorGettingSettings];
+    [self.context obtainPermanentIDsForObjects:settings error:&errorGettingSettings];
     
     NSEnumerator *settingEnumerator = [settings objectEnumerator];
     NSManagedObject *tmp;
@@ -162,14 +171,14 @@
         NSString *tempID = [self uniqueObjectURIString:tmp];
         NSManagedObject *setting = nil;
         
-        setting = [NSEntityDescription insertNewObjectForEntityForName:@"Setting" inManagedObjectContext:context];
+        setting = [NSEntityDescription insertNewObjectForEntityForName:@"Setting" inManagedObjectContext:self.context];
         
         [setting setValue:value forKey:@"Mode"];
         [setting setValue:[tmp valueForKey:@"LastSyncTS"] forKey:@"LastSyncTS"];
         
         NSError *errorSavingPerson = nil;
-        if (setting!=nil && [context save:errorGettingSettings] == NO) {
-            [context deleteObject:setting];
+        if (setting!=nil && [self.context save:&errorGettingSettings] == NO) {
+            [self.context deleteObject:setting];
             
             setting = nil;
         }
@@ -179,8 +188,8 @@
         
         
     NSError *errorSavingSetting = nil;
-    if (tmp!=nil && [context save:errorSavingSetting] == NO) {
-        [context deleteObject:tmp];
+    if (tmp!=nil && [self.context save:&errorSavingSetting] == NO) {
+        [self.context deleteObject:tmp];
         tmp = nil;
     }
     
@@ -210,7 +219,7 @@
     ///*
     // Create a request to fetch all Chefs.
     
-    NSEntityDescription *userEntity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
+    NSEntityDescription *userEntity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.context];
     
     //[sessionEntity setValue:[session valueForKey:@"TimeID"] forKey:@"TimeID"];
     
@@ -225,7 +234,7 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     
-    logins = [context executeFetchRequest:allLoginRequest error:&errorLoggingIn];
+    logins = [self.context executeFetchRequest:allLoginRequest error:&errorLoggingIn];
     
     NSEnumerator *loginEnumerator = [logins objectEnumerator];
     NSManagedObject *tmp;
@@ -252,7 +261,7 @@
     ///*
     // Create a request to fetch all Chefs.
     
-    NSEntityDescription *userEntity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
+    NSEntityDescription *userEntity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.context];
     
     //[sessionEntity setValue:[session valueForKey:@"TimeID"] forKey:@"TimeID"];
     
@@ -267,7 +276,7 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     
-    logins = [context executeFetchRequest:allLoginRequest error:&errorLoggingIn];
+    logins = [self.context executeFetchRequest:allLoginRequest error:&errorLoggingIn];
     
     NSEnumerator *loginEnumerator = [logins objectEnumerator];
     NSManagedObject *tmp;
@@ -282,7 +291,7 @@
         }
     }else{
         //Add Entry to DB
-        NSManagedObject *login = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+        NSManagedObject *login = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.context];
         [login setValue:user forKey:@"Username"];
         [login setValue:pass forKey:@"Password"];
         [login setValue:@"first" forKey:@"FirstName"];
@@ -290,7 +299,7 @@
         
         //NSLog(@"new user creds: %@", login);
         
-        if (login!=nil && [context save:&errorSavingLogin] == NO) {
+        if (login!=nil && [self.context save:&errorSavingLogin] == NO) {
             
         }
     }
@@ -309,7 +318,7 @@
     
     // Create a request to fetch all Chefs.
     
-    NSEntityDescription *personEntity = [NSEntityDescription entityForName:@"Author" inManagedObjectContext:context];
+    NSEntityDescription *personEntity = [NSEntityDescription entityForName:@"Author" inManagedObjectContext:self.context];
     
     NSFetchRequest *allPeopleRequest = [[NSFetchRequest alloc] init];
     [allPeopleRequest setEntity:personEntity];
@@ -321,35 +330,35 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     
-    people = [context executeFetchRequest:allPeopleRequest error:&errorFetchingPeople];
-    [context obtainPermanentIDsForObjects:people error:&errorFetchingPeople];
+    people = [self.context executeFetchRequest:allPeopleRequest error:&errorFetchingPeople];
+    [self.context obtainPermanentIDsForObjects:people error:&errorFetchingPeople];
     
     NSEnumerator *peopleEnumerator = [people objectEnumerator];
     NSManagedObject *tmp;
     
     while ((tmp = [peopleEnumerator nextObject]) != nil) {
         NSLog(@"a person for answers: %@",tmp);
-        NSManagedObject *newAnswer = [NSEntityDescription insertNewObjectForEntityForName:@"SurveyResponse" inManagedObjectContext:context];
+        NSManagedObject *newAnswer = [NSEntityDescription insertNewObjectForEntityForName:@"SurveyResponse" inManagedObjectContext:self.context];
         //NSString *tempID = [self uniqueObjectURIString:tmp];
         [newAnswer setValue:self.currentSession forKey:@"TimeID"];
         [newAnswer setValue:[tmp valueForKey:@"RemoteSystemID"] forKey:@"RemoteID"];
         [newAnswer setValue:answerID forKey:@"AnswerID"];
         [newAnswer setValue:value forKey:@"Value"];
         
-        NSManagedObject *newAnswer_queue = [NSEntityDescription insertNewObjectForEntityForName:@"Trans_Queue_SurveyResponse" inManagedObjectContext:context];
+        NSManagedObject *newAnswer_queue = [NSEntityDescription insertNewObjectForEntityForName:@"Trans_Queue_SurveyResponse" inManagedObjectContext:self.context];
         [newAnswer_queue setValue:self.currentSession forKey:@"TimeID"];
         [newAnswer_queue setValue:[tmp valueForKey:@"RemoteSystemID"] forKey:@"RemoteID"];
         [newAnswer_queue setValue:answerID forKey:@"AnswerID"];
         [newAnswer_queue setValue:value forKey:@"Value"];
         
-        NSManagedObject *newAnswer_archive = [NSEntityDescription insertNewObjectForEntityForName:@"Trans_Archive_SurveyResponse" inManagedObjectContext:context];
+        NSManagedObject *newAnswer_archive = [NSEntityDescription insertNewObjectForEntityForName:@"Trans_Archive_SurveyResponse" inManagedObjectContext:self.context];
         [newAnswer_archive setValue:self.currentSession forKey:@"TimeID"];
         [newAnswer_archive setValue:[tmp valueForKey:@"RemoteSystemID"] forKey:@"RemoteID"];
         [newAnswer_archive setValue:answerID forKey:@"AnswerID"];
         [newAnswer_archive setValue:value forKey:@"Value"];
         
         NSError *errorSavingSessions = nil;
-        if (newAnswer!=nil && [context save:errorSavingSessions] == NO) {
+        if (newAnswer!=nil && [self.context save:&errorSavingSessions] == NO) {
             
         }
     }
@@ -367,17 +376,17 @@
     
     // Create a request to fetch all Chefs.
     // Create a request to fetch all Authors present in the 'Queue' Table
-    NSEntityDescription *sentPersonEntity = [NSEntityDescription entityForName:@"Trans_Sent_SurveyResponse" inManagedObjectContext:context];
+    NSEntityDescription *sentPersonEntity = [NSEntityDescription entityForName:@"Trans_Sent_SurveyResponse" inManagedObjectContext:self.context];
     
     NSFetchRequest *sentPeopleRequest = [[NSFetchRequest alloc] init];
     [sentPeopleRequest setEntity:sentPersonEntity];
     [sentPeopleRequest setReturnsObjectsAsFaults:NO];    
-    sent_people = [context executeFetchRequest:sentPeopleRequest error:&errorFetchingPeople];
+    sent_people = [self.context executeFetchRequest:sentPeopleRequest error:&errorFetchingPeople];
     
     
     
     // Create a request to fetch all Queued Authors NOT present in the 'Sent' Table
-    NSEntityDescription *queuePersonEntity = [NSEntityDescription entityForName:@"Trans_Queue_SurveyResponse" inManagedObjectContext:context];
+    NSEntityDescription *queuePersonEntity = [NSEntityDescription entityForName:@"Trans_Queue_SurveyResponse" inManagedObjectContext:self.context];
     
     NSFetchRequest *queuePeopleRequest = [[NSFetchRequest alloc] init];
     [queuePeopleRequest setEntity:queuePersonEntity];
@@ -385,8 +394,8 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"(NOT (self IN %@)) AND (RemoteID = %@)",sent_people,trimmed];
     [queuePeopleRequest setPredicate:pred];
     
-    queue_people = [context executeFetchRequest:queuePeopleRequest error:&errorFetchingPeople];
-    [context obtainPermanentIDsForObjects:queue_people error:&errorFetchingPeople];
+    queue_people = [self.context executeFetchRequest:queuePeopleRequest error:&errorFetchingPeople];
+    [self.context obtainPermanentIDsForObjects:queue_people error:&errorFetchingPeople];
     
     NSEnumerator *peopleEnumerator = [queue_people objectEnumerator];
     NSManagedObject *tmp;
@@ -424,17 +433,17 @@
     NSArray *sent_people = nil;
     
     // Create a request to fetch all Authors present in the 'Queue' Table
-    NSEntityDescription *sentPersonEntity = [NSEntityDescription entityForName:@"Trans_Sent_Author" inManagedObjectContext:context];
+    NSEntityDescription *sentPersonEntity = [NSEntityDescription entityForName:@"Trans_Sent_Author" inManagedObjectContext:self.context];
     
     NSFetchRequest *sentPeopleRequest = [[NSFetchRequest alloc] init];
     [sentPeopleRequest setEntity:sentPersonEntity];
     [sentPeopleRequest setReturnsObjectsAsFaults:NO];    
-    sent_people = [context executeFetchRequest:sentPeopleRequest error:&errorFetchingPeople];
+    sent_people = [self.context executeFetchRequest:sentPeopleRequest error:&errorFetchingPeople];
     
     
     
     // Create a request to fetch all Queued Authors NOT present in the 'Sent' Table
-    NSEntityDescription *queuePersonEntity = [NSEntityDescription entityForName:@"Trans_Queue_Author" inManagedObjectContext:context];
+    NSEntityDescription *queuePersonEntity = [NSEntityDescription entityForName:@"Trans_Queue_Author" inManagedObjectContext:self.context];
     
     NSFetchRequest *queuePeopleRequest = [[NSFetchRequest alloc] init];
     [queuePeopleRequest setEntity:queuePersonEntity];
@@ -442,8 +451,8 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"(NOT (self IN %@)) AND (TimeID = %@)",sent_people, timeID];
     [queuePeopleRequest setPredicate:pred];
     
-    queue_people = [context executeFetchRequest:queuePeopleRequest error:&errorFetchingPeople];
-    [context obtainPermanentIDsForObjects:queue_people error:&errorFetchingPeople];
+    queue_people = [self.context executeFetchRequest:queuePeopleRequest error:&errorFetchingPeople];
+    [self.context obtainPermanentIDsForObjects:queue_people error:&errorFetchingPeople];
     
     NSEnumerator *peopleEnumerator = [queue_people objectEnumerator];
     NSManagedObject *tmp;
@@ -508,17 +517,17 @@
     NSArray *sent_people = nil;
     
     // Create a request to fetch all Authors present in the 'Queue' Table
-    NSEntityDescription *sentPersonEntity = [NSEntityDescription entityForName:@"Trans_Sent_Author" inManagedObjectContext:context];
+    NSEntityDescription *sentPersonEntity = [NSEntityDescription entityForName:@"Trans_Sent_Author" inManagedObjectContext:self.context];
     
     NSFetchRequest *sentPeopleRequest = [[NSFetchRequest alloc] init];
     [sentPeopleRequest setEntity:sentPersonEntity];
     [sentPeopleRequest setReturnsObjectsAsFaults:NO];    
-    sent_people = [context executeFetchRequest:sentPeopleRequest error:&errorFetchingPeople];
+    sent_people = [self.context executeFetchRequest:sentPeopleRequest error:&errorFetchingPeople];
     
     
     
     // Create a request to fetch all Queued Authors NOT present in the 'Sent' Table
-    NSEntityDescription *queuePersonEntity = [NSEntityDescription entityForName:@"Trans_Queue_Author" inManagedObjectContext:context];
+    NSEntityDescription *queuePersonEntity = [NSEntityDescription entityForName:@"Trans_Queue_Author" inManagedObjectContext:self.context];
     
     NSFetchRequest *queuePeopleRequest = [[NSFetchRequest alloc] init];
     [queuePeopleRequest setEntity:queuePersonEntity];
@@ -529,9 +538,9 @@
     [queuePeopleRequest setReturnsDistinctResults:YES];
     
     
-    queue_people = [context executeFetchRequest:queuePeopleRequest error:&errorFetchingPeople];
+    queue_people = [self.context executeFetchRequest:queuePeopleRequest error:&errorFetchingPeople];
     
-    [context obtainPermanentIDsForObjects:queue_people error:&errorFetchingPeople];
+    [self.context obtainPermanentIDsForObjects:queue_people error:&errorFetchingPeople];
     
     NSEnumerator *peopleEnumerator = [queue_people objectEnumerator];
     NSManagedObject *tmp;
@@ -567,7 +576,7 @@
     
     // Create a request to fetch all Chefs.
     
-    NSEntityDescription *personEntity = [NSEntityDescription entityForName:@"Author" inManagedObjectContext:context];
+    NSEntityDescription *personEntity = [NSEntityDescription entityForName:@"Author" inManagedObjectContext:self.context];
     
     NSFetchRequest *allPeopleRequest = [[NSFetchRequest alloc] init];
     [allPeopleRequest setEntity:personEntity];
@@ -576,8 +585,8 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     
-    people = [context executeFetchRequest:allPeopleRequest error:&errorFetchingPeople];
-    [context obtainPermanentIDsForObjects:people error:&errorFetchingPeople];
+    people = [self.context executeFetchRequest:allPeopleRequest error:&errorFetchingPeople];
+    [self.context obtainPermanentIDsForObjects:people error:&errorFetchingPeople];
     
     NSEnumerator *peopleEnumerator = [people objectEnumerator];
     NSManagedObject *tmp;
@@ -591,7 +600,7 @@
         if([tmp valueForKey:@"BrandID"]==nil) [tmp setValue:self.brandID forKey:@"BrandID"];
         
         
-        if (tmp != nil && [context save:errorFetchingPeople] == NO) 
+        if (tmp != nil && [self.context save:&errorFetchingPeople] == NO) 
         {
             NSLog(@"boosh");
         }
@@ -798,7 +807,7 @@
             if(idx != 0)
             {
                 NSLog(@"test author row: %@",row);
-                person = [NSEntityDescription insertNewObjectForEntityForName:@"Author" inManagedObjectContext:context];
+                person = [NSEntityDescription insertNewObjectForEntityForName:@"Author" inManagedObjectContext:self.context];
                 
                 NSString *GUID = [self generateUuidString];
                 
@@ -821,12 +830,12 @@
                 
                  [person setValue:[NSDate date] forKey:@"Modified"];
                  NSError *errorSavingPerson = nil;
-                 if (person!=nil && [context save:&errorSavingPerson] == NO) {
+                 if (person!=nil && [self.context save:&errorSavingPerson] == NO) {
                      person = nil;
                  }
                 
                 //CREATE QUEUE AUTHOR
-                person_update = [NSEntityDescription insertNewObjectForEntityForName:@"Trans_Queue_Author" inManagedObjectContext:context];
+                person_update = [NSEntityDescription insertNewObjectForEntityForName:@"Trans_Queue_Author" inManagedObjectContext:self.context];
                 
                 [person_update setValue:[row objectAtIndex:0] forKey:@"FirstName"];
                 [person_update setValue:[row objectAtIndex:1] forKey:@"LastName"];
@@ -843,7 +852,7 @@
                
                 
                 [person_update setValue:[NSDate date] forKey:@"Modified"];
-                if (person_update!=nil && [context save:&errorSavingPerson] == NO) {
+                if (person_update!=nil && [self.context save:&errorSavingPerson] == NO) {
                     person_update = nil;
                 }
 
@@ -877,7 +886,7 @@
         return nil;
     }
     
-    NSManagedObject *objectForID = [context objectWithID:objectID];
+    NSManagedObject *objectForID = [self.context objectWithID:objectID];
     if (![objectForID isFault])
     {
         return objectForID;
@@ -899,7 +908,7 @@
      options:0];
     [request setPredicate:predicate];
     
-    NSArray *results = [context executeFetchRequest:request error:nil];
+    NSArray *results = [self.context executeFetchRequest:request error:nil];
     if ([results count] > 0 )
     {
         return [results objectAtIndex:0];
@@ -936,7 +945,7 @@
     NSLog(@"addSessions");
     
     NSManagedObjectContext *moc = [[[NSManagedObjectContext alloc] init] autorelease];
-    [moc setPersistentStoreCoordinator:[context persistentStoreCoordinator]];
+    [moc setPersistentStoreCoordinator:[self.context persistentStoreCoordinator]];
     NSError *errorFetchingSessions = nil;
     NSMutableArray *sessions = nil;
     
@@ -1026,7 +1035,7 @@
     
     // Create a request to fetch all Chefs.
     
-    NSEntityDescription *sessionEntity = [NSEntityDescription entityForName:@"Session" inManagedObjectContext:context];
+    NSEntityDescription *sessionEntity = [NSEntityDescription entityForName:@"Session" inManagedObjectContext:self.context];
     
     NSFetchRequest *allSessionRequest = [[NSFetchRequest alloc] init];
     [allSessionRequest setEntity:sessionEntity];
@@ -1058,7 +1067,7 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     
-    sessions = [[NSMutableArray alloc] initWithArray:[context executeFetchRequest:allSessionRequest error:errorFetchingSessions]];
+    sessions = [[NSMutableArray alloc] initWithArray:[self.context executeFetchRequest:allSessionRequest error:&errorFetchingSessions]];
     
     [allSessionRequest release];
     
@@ -1073,7 +1082,7 @@
         [tmp setValue:[NSNumber numberWithBool:NO] forKey:@"active"];
         
         NSError *errorSavingSessions = nil;
-        if (tmp!=nil && [context save:errorSavingSessions] == NO) 
+        if (tmp!=nil && [self.context save:&errorSavingSessions] == NO) 
         {
             
         }
@@ -1092,7 +1101,7 @@
     
     // Create a request to fetch all Chefs.
     
-    NSEntityDescription *sessionEntity = [NSEntityDescription entityForName:@"Session" inManagedObjectContext:context];
+    NSEntityDescription *sessionEntity = [NSEntityDescription entityForName:@"Session" inManagedObjectContext:self.context];
     
     NSFetchRequest *allSessionRequest = [[NSFetchRequest alloc] init];
     [allSessionRequest setEntity:sessionEntity];
@@ -1100,7 +1109,7 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     
-    faultSessions = [NSMutableArray arrayWithArray:[context executeFetchRequest:allSessionRequest error:&errorFetchingSessions]];
+    faultSessions = [NSMutableArray arrayWithArray:[self.context executeFetchRequest:allSessionRequest error:&errorFetchingSessions]];
     
     [allSessionRequest release];
     
@@ -1118,7 +1127,7 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     
-    sessions = [NSMutableArray arrayWithArray:[context executeFetchRequest:allSessionRequest error:&errorFetchingSessions]];
+    sessions = [NSMutableArray arrayWithArray:[self.context executeFetchRequest:allSessionRequest error:&errorFetchingSessions]];
     
     NSLog(@"allSessions: %@",sessions);
     
@@ -1184,48 +1193,54 @@
 {
     NSLog(@"clearQueues");
     
-    NSError *errorFetchingPeople = nil;
-    NSArray *queue_people = nil;
-    NSArray *sent_people = nil;
+    NSError *errorFetchingPeople;// = nil;
+    NSArray *queue_people; //= nil;
+    NSArray *sent_people;// = nil;
     
     // Create a request to fetch all Authors present in the 'Queue' Table
-    NSEntityDescription *sentPersonEntity = [NSEntityDescription entityForName:@"Trans_Sent_Author" inManagedObjectContext:context];
-    
+    NSEntityDescription *sentPersonEntity = [NSEntityDescription entityForName:@"Trans_Sent_Author" inManagedObjectContext:self.context];
+    NSLog(@"q1");
+    ///// HHmmmm
     NSFetchRequest *sentPeopleRequest = [[NSFetchRequest alloc] init];
+    NSLog(@"q1.1");
     [sentPeopleRequest setEntity:sentPersonEntity];
+    NSLog(@"q1.2");
     [sentPeopleRequest setReturnsObjectsAsFaults:NO];    
-    sent_people = [context executeFetchRequest:sentPeopleRequest error:&errorFetchingPeople];
-    
+    NSLog(@"q1.3");
+    sent_people = [self.context executeFetchRequest:sentPeopleRequest error:&errorFetchingPeople];
+    /////////
+    NSLog(@"q2"); 
     
     
     // Create a request to fetch all Queued Authors NOT present in the 'Sent' Table
-    NSEntityDescription *queuePersonEntity = [NSEntityDescription entityForName:@"Trans_Queue_Author" inManagedObjectContext:context];
-    
+    NSEntityDescription *queuePersonEntity = [NSEntityDescription entityForName:@"Trans_Queue_Author" inManagedObjectContext:self.context];
+    NSLog(@"q3");
     NSFetchRequest *queuePeopleRequest = [[NSFetchRequest alloc] init];
     [queuePeopleRequest setEntity:queuePersonEntity];
     [queuePeopleRequest setReturnsObjectsAsFaults:NO];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"(NOT (self IN %@))",sent_people];
     [queuePeopleRequest setPredicate:pred];
-    
-    queue_people = [context executeFetchRequest:queuePeopleRequest error:&errorFetchingPeople];
-    [context obtainPermanentIDsForObjects:queue_people error:&errorFetchingPeople];
-    
+    NSLog(@"q4");
+    queue_people = [self.context executeFetchRequest:queuePeopleRequest error:&errorFetchingPeople];
+    [self.context obtainPermanentIDsForObjects:queue_people error:&errorFetchingPeople];
+    NSLog(@"q5");
     NSEnumerator *peopleEnumerator = [queue_people objectEnumerator];
     NSManagedObject *tmp;
     
     
-    NSMutableArray *peopleData = [[NSMutableArray alloc] initWithCapacity:0];
+  //  NSMutableArray *peopleData = [[NSMutableArray alloc] initWithCapacity:0];
     //*
+    NSLog(@"About to do a while loop");
     while ((tmp = [peopleEnumerator nextObject]) != nil) {
-        [context deleteObject:tmp];
+        [self.context deleteObject:tmp];
     }
-    
+    NSLog(@"out of while loop");
     NSError *errorSavingSessions = nil;
-    if ([context save:errorSavingSessions] == NO) {
+    if ([self.context save:&errorSavingSessions] == NO) {
        
     }
 
-    
+    NSLog(@"near bottom... doing cleanup...");
     // Clean up and return.
     [queuePeopleRequest release];
     [sentPeopleRequest release];
@@ -1233,6 +1248,7 @@
     //*/
     //NSLog(@"peopleData: %@",peopleData);
     //return peopleData;//[NSMutableArray arrayWithCapacity:0];//peopleData;
+    NSLog(@"Exiting clear queueueueueueus");
 }
 
 -(NSString*)sessionNameForID:(NSString*)timeID
@@ -1304,11 +1320,11 @@
         return;
     }
     
-    NSManagedObject *objectForID = [context objectWithID:objectID];
+    NSManagedObject *objectForID = [self.context objectWithID:objectID];
     if (![objectForID isFault])
     {
-        [context deleteObject:objectForID];
-        if (objectForID!=nil && [context save:errorDeletingPerson] == NO) 
+        [self.context deleteObject:objectForID];
+        if (objectForID!=nil && [self.context save:&errorDeletingPerson] == NO) 
         {
             NSLog(@"boosh");
         }
@@ -1331,11 +1347,11 @@
      options:0];
     [request setPredicate:predicate];
     
-    NSArray *results = [context executeFetchRequest:request error:nil];
+    NSArray *results = [self.context executeFetchRequest:request error:nil];
     if ([results count] > 0 )
     {
-        [context deleteObject:[results objectAtIndex:0]];
-        if ([results objectAtIndex:0]!=nil && [context save:errorDeletingPerson] == NO) 
+        [self.context deleteObject:[results objectAtIndex:0]];
+        if ([results objectAtIndex:0]!=nil && [self.context save:errorDeletingPerson] == NO) 
         {
             NSLog(@"boosh");
         }
@@ -1353,7 +1369,7 @@
     
     // Create a request to fetch all Chefs.
     
-    NSEntityDescription *settingEntity = [NSEntityDescription entityForName:@"Setting" inManagedObjectContext:context];
+    NSEntityDescription *settingEntity = [NSEntityDescription entityForName:@"Setting" inManagedObjectContext:self.context];
     
     NSFetchRequest *settingRequest = [[NSFetchRequest alloc] init];
     [settingRequest setEntity:settingEntity];
@@ -1361,8 +1377,8 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     
-    settings = [context executeFetchRequest:settingRequest error:&errorGettingSettings];
-    [context obtainPermanentIDsForObjects:settings error:&errorGettingSettings];
+    settings = [self.context executeFetchRequest:settingRequest error:&errorGettingSettings];
+    [self.context obtainPermanentIDsForObjects:settings error:&errorGettingSettings];
     
     NSEnumerator *settingEnumerator = [settings objectEnumerator];
     NSManagedObject *tmp;
@@ -1377,8 +1393,8 @@
         [tmp setValue:[NSDate date] forKey:@"LastSyncTS"];
         
         NSError *errorSavingPerson = nil;
-        if (setting!=nil && [context save:errorGettingSettings] == NO) {
-            [context deleteObject:setting];
+        if (setting!=nil && [self.context save:&errorGettingSettings] == NO) {
+            [self.context deleteObject:setting];
             
             setting = nil;
         }
@@ -1388,8 +1404,8 @@
     
     
     NSError *errorSavingSetting = nil;
-    if (tmp!=nil && [context save:errorSavingSetting] == NO) {
-        [context deleteObject:tmp];
+    if (tmp!=nil && [self.context save:&errorSavingSetting] == NO) {
+        [self.context deleteObject:tmp];
         tmp = nil;
     }
     
@@ -1406,7 +1422,7 @@
     
     // Create a request to fetch all Chefs.
     
-    NSEntityDescription *settingEntity = [NSEntityDescription entityForName:@"Setting" inManagedObjectContext:context];
+    NSEntityDescription *settingEntity = [NSEntityDescription entityForName:@"Setting" inManagedObjectContext:self.context];
     
     NSFetchRequest *settingRequest = [[NSFetchRequest alloc] init];
     [settingRequest setEntity:settingEntity];
@@ -1414,7 +1430,7 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     
-    settings = [context executeFetchRequest:settingRequest error:&errorGettingSettings];
+    settings = [self.context executeFetchRequest:settingRequest error:&errorGettingSettings];
     
     NSEnumerator *settingEnumerator = [settings objectEnumerator];
     NSManagedObject *tmp;
@@ -1491,7 +1507,7 @@
     
     // Create a request to fetch all EventTimeAuthors.
     
-    NSEntityDescription *eventTimeAuthorEntity = [NSEntityDescription entityForName:@"Author" inManagedObjectContext:context];
+    NSEntityDescription *eventTimeAuthorEntity = [NSEntityDescription entityForName:@"Author" inManagedObjectContext:self.context];
     
     NSFetchRequest *allEventTimeAuthorsRequest = [[NSFetchRequest alloc] init];
     [allEventTimeAuthorsRequest setEntity:eventTimeAuthorEntity];
@@ -1503,7 +1519,7 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     [allEventTimeAuthorsRequest setReturnsObjectsAsFaults:NO];   
-    eventTimeAuthors = [context executeFetchRequest:allEventTimeAuthorsRequest error:errorFetchingEventTimeAuthors];
+    eventTimeAuthors = [self.context executeFetchRequest:allEventTimeAuthorsRequest error:errorFetchingEventTimeAuthors];
     
     [allEventTimeAuthorsRequest release];
     
@@ -1523,13 +1539,13 @@
         }
         
         
-        if (tmp != nil && [context save:errorAddingEventTimeAuthor] == NO) 
+        if (tmp != nil && [self.context save:&errorAddingEventTimeAuthor] == NO) 
         {
             NSLog(@"boosh");
         }
     }
     
-    eventTimeAuthorEntity = [NSEntityDescription entityForName:@"Trans_Queue_Author" inManagedObjectContext:context];
+    eventTimeAuthorEntity = [NSEntityDescription entityForName:@"Trans_Queue_Author" inManagedObjectContext:self.context];
     
     allEventTimeAuthorsRequest = [[NSFetchRequest alloc] init];
     [allEventTimeAuthorsRequest setEntity:eventTimeAuthorEntity];
@@ -1541,7 +1557,7 @@
     // Ask the context for everything matching the request.
     // If an error occurs, the context will return nil and an error in *error.
     [allEventTimeAuthorsRequest setReturnsObjectsAsFaults:NO];   
-    eventTimeAuthors = [context executeFetchRequest:allEventTimeAuthorsRequest error:errorFetchingEventTimeAuthors];
+    eventTimeAuthors = [self.context executeFetchRequest:allEventTimeAuthorsRequest error:&errorFetchingEventTimeAuthors];
     
     [allEventTimeAuthorsRequest release];
     
@@ -1560,7 +1576,7 @@
             [tmp setValue:@"true" forKey:@"Opt_In"];
         }
         
-        if (tmp != nil && [context save:errorAddingEventTimeAuthor] == NO) 
+        if (tmp != nil && [self.context save:&errorAddingEventTimeAuthor] == NO) 
         {
             NSLog(@"boosh");
         }

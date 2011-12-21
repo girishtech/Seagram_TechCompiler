@@ -176,16 +176,22 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 
 - (void) saveImage:(UIImage*)image withName:(NSString*)name {
-    image = [self imageWithImage:image scaledToSize:CGSizeMake(464, 384)];
+    //portrait
+    image = [self imageWithImage:image scaledToSize:CGSizeMake(384, 464)];
+    // landscape
+    //image = [self imageWithImage:image scaledToSize:CGSizeMake(464, 384)];
     NSData *data = UIImagePNGRepresentation(image);
    
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    /*
     documentDirectory = [documentDirectory stringByAppendingPathComponent:@"EventImages"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:documentDirectory]) {
         NSError *error = nil;
         [[NSFileManager defaultManager] createDirectoryAtPath:documentDirectory withIntermediateDirectories:NO attributes:nil error:&error];
     }
+    // */
     NSString *fullpath = [documentDirectory stringByAppendingPathComponent:name];
+    NSLog(@"### SAVING IMAGE TO PATH: %@", fullpath);
     [[NSFileManager defaultManager] createFileAtPath:fullpath contents:data attributes:nil];
 }
 
@@ -195,7 +201,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
     DataAccess *da = [appDelegate da];
-    NSString *imagename = [NSString stringWithFormat:@"%@_%@.PNG",da.currentSession,[appDelegate rootVC].emailAddress];
+    NSString *imagename = [NSString stringWithFormat:@"%@_%@.png",da.currentSession,[appDelegate rootVC].emailAddress];
+    NSLog(@"generated image name of: %@", imagename);
     [self saveImage:image withName:imagename];
     
     isAgreed = YES;
@@ -212,18 +219,20 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (NSString*)imagePath {
     NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    /*
     documentDirectory = [documentDirectory stringByAppendingPathComponent:@"EventImages"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:documentDirectory]) {
         NSError *error = nil;
         [[NSFileManager defaultManager] createDirectoryAtPath:documentDirectory withIntermediateDirectories:NO attributes:nil error:&error];
     }
     //NSString *fullpath = [documentDirectory stringByAppendingPathComponent:@"Hello.JPEG"];
+     */
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *sPath = [defaults valueForKey:@"kiosk_currentSessionName"];
 
 
     NSString *fullpath = [documentDirectory stringByAppendingPathComponent:sPath];
-    
+    NSLog(@"imagePath method crated image path of: %@", fullpath);
     return fullpath;
 }
 

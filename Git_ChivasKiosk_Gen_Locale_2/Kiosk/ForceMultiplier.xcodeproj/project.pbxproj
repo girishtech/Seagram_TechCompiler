@@ -2324,8 +2324,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Paul mayo (9WGQNWFW98)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Paul mayo (9WGQNWFW98)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Vedder (56KBLG39Q7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Vedder (56KBLG39Q7)";
 				CONCIERGE = 0;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2338,8 +2338,8 @@
 				INFOPLIST_FILE = "ForceMultiplier/ForceMultiplier-Info.plist";
 				NSZombie = true;
 				PRODUCT_NAME = "Chivas Kiosk";
-				PROVISIONING_PROFILE = "A4F21CA2-0CD3-4C5F-88FE-0A9E51F686B7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A4F21CA2-0CD3-4C5F-88FE-0A9E51F686B7";
+				PROVISIONING_PROFILE = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
 				SKIP_INSTALL = NO;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -2420,8 +2420,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Paul mayo (9WGQNWFW98)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Paul mayo (9WGQNWFW98)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Vedder (56KBLG39Q7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Vedder (56KBLG39Q7)";
 				CONCIERGE = 0;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2435,8 +2435,8 @@
 				INFOPLIST_FILE = "ForceMultiplier/ForceMultiplier-Info.plist";
 				NSZombie = true;
 				PRODUCT_NAME = "Chivas Kiosk";
-				PROVISIONING_PROFILE = "A4F21CA2-0CD3-4C5F-88FE-0A9E51F686B7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40BCE624-1DFA-4443-8DD3-8027F6E0EBB2";
+				PROVISIONING_PROFILE = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
 				SKIP_INSTALL = NO;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2446,8 +2446,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Paul mayo (9WGQNWFW98)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Paul mayo (9WGQNWFW98)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Vedder (56KBLG39Q7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Vedder (56KBLG39Q7)";
 				CONCIERGE = 0;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2460,8 +2460,8 @@
 				INFOPLIST_FILE = "ForceMultiplier/ForceMultiplier-Info.plist";
 				NSZombie = true;
 				PRODUCT_NAME = "Chivas Kiosk";
-				PROVISIONING_PROFILE = "A4F21CA2-0CD3-4C5F-88FE-0A9E51F686B7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A4F21CA2-0CD3-4C5F-88FE-0A9E51F686B7";
+				PROVISIONING_PROFILE = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
 				SKIP_INSTALL = NO;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

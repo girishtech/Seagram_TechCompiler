@@ -28,7 +28,8 @@
 @synthesize lastLoadInitUpdate;
 @synthesize busy,newLoadInitUpdate, isUpdatingCheckIn,isLoadingMarketOnline,isLoadingMarketEventOnline,isLoadingPeopleForDate, isAddingPeople, isUpdatingPeople,creatingTestAuthors;
 @synthesize WS_URL;
-@synthesize dataAccess;
+@synthesize dataAccess = _dataAccess;
+@synthesize requestQueue;
 @synthesize xmlParser;
 @synthesize loginVC;
 @synthesize diagnosticMode;
@@ -61,9 +62,9 @@
         }
     }
 	
-    dataAccess = [[DataAccess alloc] init];
-    xmlParser = [[XMLManager alloc] init];
-    requestQueue = [[NSMutableArray alloc] init];
+    self.dataAccess = [[DataAccess alloc] init];
+    self.xmlParser = [[XMLManager alloc] init];
+    self.requestQueue = [[NSMutableArray alloc] init];
     
     diagnosticMode = NO;
     
@@ -293,7 +294,7 @@
 {
     
     NSLog(@"dumpRegistrationsToServer");
-    NSArray *eventTimeIDs = [dataAccess eventTimeIDsForPush];
+    NSArray *eventTimeIDs = [self.dataAccess eventTimeIDsForPush];
     
     NSDictionary *bundleInfo = [[NSBundle mainBundle] infoDictionary];
     UIDevice *device = [UIDevice currentDevice];
@@ -305,6 +306,13 @@
     NSString *deviceUUID = [device uniqueIdentifier];
     NSString *applicationName = [bundleInfo valueForKey:@"CFBundleName"];
     NSString *applicationVersion = CURRENTVERSION;
+    NSLog(@"abut to do first POST change...");
+    // for image POSTing
+    NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *wsPhotoMethod = @"API/AddPhoto";
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",WS_URL,wsPhotoMethod];
+    NSLog(@"urlString: %@",urlString);
+
     
     NSString *APIKEY;
     NSString *APPKEY;
@@ -335,7 +343,7 @@
         [requestJSONObj setValue:APIKEY forKey:@"AccountAPIKey"];
         [requestJSONObj setValue:APPKEY forKey:@"ApplicationKey"];
         [requestJSONObj setValue:[self parseDateTime:[NSDate date]] forKey:@"RequestTimestamp"];
-        [requestJSONObj setValue:dataAccess.brandID forKey:@"StudyID"];
+        [requestJSONObj setValue:self.dataAccess.brandID forKey:@"StudyID"];
         
         [requestJSONObj setValue:deviceName forKey:@"ClientName"];
         [requestJSONObj setValue:deviceModel forKey:@"ClientModel"];
@@ -351,13 +359,57 @@
         NSMutableDictionary *eventTime = [[NSMutableDictionary alloc] initWithCapacity:0];
         [eventTime setValue:eventTimeID forKey:@"TimeID"];
         
-        NSArray *authorsForPush = [dataAccess allAuthorsForPush:eventTimeID];
+        NSArray *authorsForPush = [self.dataAccess allAuthorsForPush:eventTimeID];
         NSMutableArray *authors = [[NSMutableArray alloc] initWithCapacity:0];
+        // each person...
         for(NSDictionary *authorForPush in authorsForPush){
+            
             NSMutableDictionary *author = [[NSMutableDictionary alloc] initWithCapacity:0];
             [author addEntriesFromDictionary:authorForPush];
             
-            NSArray *responses = [dataAccess answersForRemoteID:[authorForPush valueForKey:@"RemoteSystemID"]];
+            ///////////////
+            // IMAGE UPLOAD STUFF
+          /*
+            NSString *authorEmail = [author valueForKey:@"AuthorEmail"];
+            NSLog(@"got email addy of %@", authorEmail);
+            
+            // see if we have an image
+            NSString *imageFileName = [NSString stringWithFormat:@"%@_%@.png", eventTimeID, authorEmail];
+            NSString *imagePath = [documentDirectory stringByAppendingPathComponent:imageFileName];
+            BOOL imgExists = [[NSFileManager defaultManager] fileExistsAtPath:imagePath];
+            NSLog(@"Checked for image %@; did I find one? %d", imagePath, imgExists);
+      
+           // UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfFile: imagePath]];
+             if (imgExists) {
+                 NSLog(@"Found an image, so creating a new request to send it...");
+                 
+                  ASIFormDataRequest *theRequest = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
+                  [theRequest setPostValue:eventTimeID forKey:@"timeID"];
+                  [theRequest setPostValue:authorEmail forKey:@"email"];
+                  [theRequest setFile:imagePath withFileName:imageFileName andContentType:@"image/png" forKey:@"photo"];
+                  
+                  //synchronous request
+                  [theRequest startSynchronous];
+                  NSError *err = [theRequest error];
+                  if (!err) {
+                      NSLog(@"request returned with no error: %@ going to remove image", [theRequest responseString]);
+                      // no error, so remove the image
+                      [[NSFileManager defaultManager] removeItemAtPath:imagePath error:NULL];
+                  } else {
+                      NSLog(@"Request bombed: %@", err.description);
+                  }
+                  
+
+               
+             }
+             else {
+                NSLog(@"No image for author");
+             }
+            // END IMAGE UPLOAD STUFF
+            ///////////////////////////////
+            // */
+            
+            NSArray *responses = [self.dataAccess answersForRemoteID:[authorForPush valueForKey:@"RemoteSystemID"]];
             [author setObject:responses forKey:@"SurveyResponses"];
             [author setValue:[author valueForKey:@"Opt_In"] forKey:@"OptIn"];
             
@@ -406,9 +458,10 @@
 	NSLog(@"dumpRegistrationsToServerRequestFinished response: %@",responseString);
     
     if([responseString isEqualToString:@"\"Thank You\""] && ([requestQueue count]==1)){
-        [dataAccess clearQueues];
+        [self.dataAccess performSelectorOnMainThread:@selector(clearQueues) withObject:nil waitUntilDone:YES];
+        //[self.dataAccess clearQueues];
     }
-
+    NSLog(@"about to call popRequest....");
     [self popRequest];
 }
 
@@ -441,7 +494,7 @@
     
     NSLog(@"getEventTimes");
     
-    NSString *service = [NSString stringWithFormat:@"%@%@", @"API/GetEventsForStudyID?studyID=", dataAccess.brandID];
+    NSString *service = [NSString stringWithFormat:@"%@%@", @"API/GetEventsForStudyID?studyID=", self.dataAccess.brandID];
     
     ASIFormDataRequest *request = [self buildRequestToService:service withData:nil];
     [request setDelegate:self];
@@ -468,7 +521,7 @@
     
     NSString *eventTimes = [request responseString];
     //[xmlParser parseXMLString:eventTimesXML forService:@"GetStudyEventTimes"];
-    [dataAccess addSessions:[eventTimes JSONValue]];
+    [self.dataAccess addSessions:[eventTimes JSONValue]];
     
     [self popRequest];
 }
@@ -504,17 +557,19 @@
 
 -(void)nextRequest
 {
-    if([requestQueue count]>0 && !busy)
+    if([requestQueue count] > 0 && !busy)
     {
         NSLog(@"next request: %@",[requestQueue objectAtIndex:0]);
         busy = YES;
         [[requestQueue objectAtIndex:0]startAsynchronous];
-    }else{
-        if([requestQueue count]==0){
+    } else {
+        NSLog(@"I'm not busy! Request count is %d", [requestQueue count]);
+        if([requestQueue count] == 0) {
             if(isAddingPeople)
             {
+                NSLog(@"use to add reg for people...");
                 isAddingPeople = NO;
-                [self addRegistrationForPeople];
+                //[self addRegistrationForPeople];
             }
             
             else if(creatingTestAuthors)
@@ -528,7 +583,7 @@
                 //[[appDelegate rootVC]syncSucceeded];
                 //[[appDelegate rootVC]unlockScreen];
                // NSTimer *aTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(checkCount) userInfo:nil repeats:NO]; 
-                [dataAccess saveNewSyncTS];
+                [self.dataAccess saveNewSyncTS];
                 [[appDelegate rootVC] performSelectorOnMainThread:@selector(unlockScreen) withObject:nil waitUntilDone:YES];
                 [[appDelegate rootVC]syncSucceeded];
             }
@@ -538,39 +593,6 @@
     }
 }
 
--(void)checkCount
-{   
-    if([requestQueue count]>0 && !busy)
-    {
-        NSLog(@"next request: %@",[requestQueue objectAtIndex:0]);
-        busy = YES;
-        [[requestQueue objectAtIndex:0]startAsynchronous];
-    }else{
-        if([requestQueue count]==0 && !busy){
-            if(isAddingPeople)
-            {
-                isAddingPeople = NO;
-                [self addRegistrationForPeople];
-            }
-            else if(creatingTestAuthors)
-            {
-                
-            }
-            else
-            {
-                NSLog(@"sync done - check count");
-                [dataAccess saveNewSyncTS];
-                ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
-                [[appDelegate rootVC] performSelectorOnMainThread:@selector(unlockScreen) withObject:nil waitUntilDone:YES];
-                [[appDelegate rootVC]syncSucceeded];
-                //[[appDelegate rootVC]unlockScreen];
-                //NSTimer *aTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 target:appDelegate.rootVC selector:@selector(unlockScreen) userInfo:nil repeats:NO];
-                
-            }
-        }
-    }
-    
-}
 
 -(void)clearQueue
 {
@@ -579,6 +601,7 @@
 
 -(void)popRequest
 {
+    NSLog(@"popRequest called");
     busy = NO;
     [requestQueue removeObjectAtIndex:0];
     [self nextRequest];

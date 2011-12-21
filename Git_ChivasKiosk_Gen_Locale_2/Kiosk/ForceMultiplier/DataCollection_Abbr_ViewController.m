@@ -105,7 +105,7 @@
     
     //Set styling on textfields
 //    textFields = [[NSArray alloc] initWithObjects:firstName,lastName/*,accountName*/,email,confirmEmail,telephone_1,telephone_2,telephone_3,month,day,year,zip,nil];
-    textFields = [[NSArray alloc] initWithObjects:firstName,lastName/*,accountName*/,email,confirmEmail,telephone_1,telephone_2,telephone_3,nil];
+    textFields = [[NSArray alloc] initWithObjects:firstName,lastName/*,accountName*/,email,confirmEmail,telephone_1,telephone_2,telephone_3, zip, nil];
 	for(UITextField *aTextField in textFields){
 		aTextField.borderStyle = UITextBorderStyleBezel;
         aTextField.backgroundColor = [UIColor whiteColor];
@@ -560,6 +560,7 @@
 	for(UITextField *field in textFields){
 		field.text = @"";
 	}
+    [dob setTitle:@"" forState:UIControlStateNormal];
     [self _layoutPage];
     
     optIn.selected = YES;
