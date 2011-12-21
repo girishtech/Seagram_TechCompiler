@@ -378,11 +378,12 @@
 
 -(IBAction)changeMode:(id)sender
 {
-    /*
-    [da changeMode:[NSNumber numberWithInt:modeControl.selectedSegmentIndex]];
+    //NSLog(@"");
+    
+    [da changeMode:[NSNumber numberWithInt:(2-modeControl.selectedSegmentIndex)]];
     ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
     TabbedViewController *tabbed = [[[[appDelegate rootVC]navController]viewControllers]objectAtIndex:0];
-    [tabbed _updateView];//*/
+    //[tabbed _updateView];//
 }
 
 -(IBAction)changeDiagnosticMode:(id)sender

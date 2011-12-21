@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "ForceMultiplier/KioskSettingsViewController.m"
-         timestampString = "345976794.547823"
+         timestampString = "346144798.182164"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "442"
-         endingLineNumber = "442"
+         startingLineNumber = "443"
+         endingLineNumber = "443"
          landmarkName = "-clickedCancel"
          landmarkType = "5">
       </FileBreakpoint>

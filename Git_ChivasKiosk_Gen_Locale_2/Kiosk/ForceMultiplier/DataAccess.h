@@ -23,6 +23,7 @@
     
     NSString *brandID;
     
+    NSInteger mode;
     
 }
 
@@ -31,6 +32,7 @@
 @property (nonatomic) NSString *currentSession;
 @property (nonatomic, retain) AuthorizedConnector *web;
 @property (nonatomic, retain) NSString *brandID;
+@property (nonatomic, assign)  NSInteger mode;
 
 -(NSString*)logoImage;
 -(NSMutableArray*)allPeople;

@@ -155,4 +155,10 @@
     }
 }
 
+- (IBAction) selectDOB:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(doneClicked)]) {
+        [self.delegate doneClicked];
+    }
+}
+
 @end

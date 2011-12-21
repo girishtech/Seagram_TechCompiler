@@ -11,12 +11,14 @@
 
 @implementation DataAccess
 
-@synthesize currentSession,brandID;
+@synthesize currentSession,brandID, mode;
 
 -(id)init
 {
     [super init];
 
+    mode = 1;
+    
     ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
     context = [appDelegate managedObjectContext];
     coordinator = [appDelegate persistentStoreCoordinator];
@@ -97,6 +99,8 @@
 
 -(NSNumber*)getMode
 {
+    return [NSNumber numberWithInt:mode];
+    
     NSLog(@"setDefaults");
     
     NSError *errorGettingSettings = nil;
@@ -133,6 +137,8 @@
 
 -(void)changeMode:(NSNumber*)value
 {
+    mode = [value intValue];
+    return;
     NSError *errorGettingSettings = nil;
     NSArray *settings = nil;
     

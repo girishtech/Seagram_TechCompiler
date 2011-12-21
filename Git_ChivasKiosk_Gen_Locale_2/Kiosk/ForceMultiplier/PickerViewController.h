@@ -12,6 +12,7 @@
 
 -(void)numberDidChangeTo:(NSString *)newNumber;
 -(void)popoverShown;
+- (void) doneClicked;
 
 @end
 
@@ -29,5 +30,6 @@
 @property (nonatomic, copy) NSMutableDictionary *components;
 
 -(void)didChangeSelection:(NSMutableDictionary *)componentValues;
+- (IBAction) selectDOB:(id)sender;
 
 @end

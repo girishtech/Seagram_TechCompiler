@@ -336,6 +336,7 @@
     NSLog(@"lockScreen");
     self.screenLock.hidden = NO;
     [self.activityIndicator startAnimating];
+    //[self.accessibilityHint ];
 }
 
 -(void)lockScreen:(id)target

@@ -143,7 +143,7 @@
 										<string key="NSFrame">{{18, 196}, {110, 21}}</string>
 										<reference key="NSSuperview" ref="822793622"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="751304240"/>
+										<reference key="NSNextKeyView" ref="976830036"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">7</int>
@@ -351,7 +351,7 @@
 										<string key="NSFrame">{{61, 219}, {12, 26}}</string>
 										<reference key="NSSuperview" ref="822793622"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="638496996"/>
+										<reference key="NSNextKeyView" ref="364306922"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">7</int>
@@ -380,7 +380,6 @@
 										<string key="NSFrame">{{18, 216}, {35, 31}}</string>
 										<reference key="NSSuperview" ref="822793622"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="976830036"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -408,7 +407,7 @@
 										<string key="NSFrame">{{116, 219}, {34, 26}}</string>
 										<reference key="NSSuperview" ref="822793622"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="692277568"/>
+										<reference key="NSNextKeyView" ref="53466951"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">7</int>
@@ -428,7 +427,6 @@
 										<string key="NSFrame">{{73, 216}, {35, 31}}</string>
 										<reference key="NSSuperview" ref="822793622"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="364306922"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -456,7 +454,6 @@
 										<string key="NSFrame">{{151, 216}, {35, 31}}</string>
 										<reference key="NSSuperview" ref="822793622"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="53466951"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -834,22 +831,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">day</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="638496996"/>
-					</object>
-					<int key="connectionID">111</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">year</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="692277568"/>
-					</object>
-					<int key="connectionID">114</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">confirmEmail</string>
 						<reference key="source" ref="841351856"/>
 						<reference key="destination" ref="751811122"/>
@@ -922,11 +903,27 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">year</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="692277568"/>
+					</object>
+					<int key="connectionID">114</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">month</string>
 						<reference key="source" ref="841351856"/>
 						<reference key="destination" ref="751304240"/>
 					</object>
 					<int key="connectionID">108</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">day</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="638496996"/>
+					</object>
+					<int key="connectionID">111</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -1047,14 +1044,6 @@
 					<int key="connectionID">107</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="638496996"/>
-						<reference key="destination" ref="841351856"/>
-					</object>
-					<int key="connectionID">109</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">textFieldChanged:</string>
 						<reference key="source" ref="638496996"/>
@@ -1066,10 +1055,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="692277568"/>
+						<reference key="source" ref="638496996"/>
 						<reference key="destination" ref="841351856"/>
 					</object>
-					<int key="connectionID">112</int>
+					<int key="connectionID">109</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1079,6 +1068,14 @@
 						<int key="IBEventType">18</int>
 					</object>
 					<int key="connectionID">113</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="692277568"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">112</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -1230,16 +1227,6 @@
 						<reference key="parent" ref="822793622"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">79</int>
-						<reference key="object" ref="638496996"/>
-						<reference key="parent" ref="822793622"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">80</int>
-						<reference key="object" ref="692277568"/>
-						<reference key="parent" ref="822793622"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">40</int>
 						<reference key="object" ref="347784011"/>
 						<reference key="parent" ref="822793622"/>
@@ -1305,8 +1292,18 @@
 						<reference key="parent" ref="822793622"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">80</int>
+						<reference key="object" ref="692277568"/>
+						<reference key="parent" ref="822793622"/>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">77</int>
 						<reference key="object" ref="751304240"/>
+						<reference key="parent" ref="822793622"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">79</int>
+						<reference key="object" ref="638496996"/>
 						<reference key="parent" ref="822793622"/>
 					</object>
 				</object>

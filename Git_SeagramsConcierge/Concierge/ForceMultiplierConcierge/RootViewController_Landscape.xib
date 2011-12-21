@@ -74,39 +74,6 @@
 							<object class="IBUIView" id="152661998">
 								<reference key="NSNextResponder" ref="210146110"/>
 								<int key="NSvFlags">274</int>
-								<object class="NSMutableArray" key="NSSubviews">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<object class="IBUIView" id="210506303">
-										<reference key="NSNextResponder" ref="152661998"/>
-										<int key="NSvFlags">-2147483374</int>
-										<object class="NSMutableArray" key="NSSubviews">
-											<bool key="EncodedWithXMLCoder">YES</bool>
-											<object class="IBUIActivityIndicatorView" id="817291501">
-												<reference key="NSNextResponder" ref="210506303"/>
-												<int key="NSvFlags">292</int>
-												<string key="NSFrame">{{504, 355}, {37, 37}}</string>
-												<reference key="NSSuperview" ref="210506303"/>
-												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="300955939"/>
-												<bool key="IBUIOpaque">NO</bool>
-												<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-												<bool key="IBUIHidesWhenStopped">NO</bool>
-												<bool key="IBUIAnimating">YES</bool>
-												<int key="IBUIStyle">0</int>
-											</object>
-										</object>
-										<string key="NSFrame">{{0, -165}, {1044, 815}}</string>
-										<reference key="NSSuperview" ref="152661998"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="817291501"/>
-										<object class="NSColor" key="IBUIBackgroundColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MCAwIDAAA</bytes>
-										</object>
-										<float key="IBUIAlpha">0.89999997615814209</float>
-										<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-									</object>
-								</object>
 								<string key="NSFrame">{{0, 87}, {1024, 650}}</string>
 								<reference key="NSSuperview" ref="210146110"/>
 								<reference key="NSWindow"/>
@@ -369,6 +336,36 @@
 									<double key="NSSize">17</double>
 									<int key="NSfFlags">16</int>
 								</object>
+							</object>
+							<object class="IBUIView" id="210506303">
+								<reference key="NSNextResponder" ref="210146110"/>
+								<int key="NSvFlags">-2147483374</int>
+								<object class="NSMutableArray" key="NSSubviews">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<object class="IBUIActivityIndicatorView" id="817291501">
+										<reference key="NSNextResponder" ref="210506303"/>
+										<int key="NSvFlags">292</int>
+										<string key="NSFrame">{{504, 355}, {37, 37}}</string>
+										<reference key="NSSuperview" ref="210506303"/>
+										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="300955939"/>
+										<bool key="IBUIOpaque">NO</bool>
+										<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+										<bool key="IBUIHidesWhenStopped">NO</bool>
+										<bool key="IBUIAnimating">YES</bool>
+										<int key="IBUIStyle">0</int>
+									</object>
+								</object>
+								<string key="NSFrame">{{0, -23}, {1044, 815}}</string>
+								<reference key="NSSuperview" ref="210146110"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="817291501"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MCAwIDAAA</bytes>
+								</object>
+								<float key="IBUIAlpha">0.89999997615814209</float>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 						</object>
 						<string key="NSFrameSize">{1044, 768}</string>
@@ -683,6 +680,7 @@
 							<reference ref="73511832"/>
 							<reference ref="1072820837"/>
 							<reference ref="1015116509"/>
+							<reference ref="210506303"/>
 						</object>
 						<reference key="parent" ref="326213686"/>
 					</object>
@@ -722,7 +720,6 @@
 						<reference key="object" ref="152661998"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="210506303"/>
 						</object>
 						<reference key="parent" ref="210146110"/>
 						<string key="objectName">MainContent</string>
@@ -791,7 +788,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="817291501"/>
 						</object>
-						<reference key="parent" ref="152661998"/>
+						<reference key="parent" ref="210146110"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">71</int>

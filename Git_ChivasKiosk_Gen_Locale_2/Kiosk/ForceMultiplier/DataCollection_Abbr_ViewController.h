@@ -110,5 +110,4 @@
 -(void)clearFields;
 - (IBAction)chooseDOB:(id)sender;
 
-
 @end

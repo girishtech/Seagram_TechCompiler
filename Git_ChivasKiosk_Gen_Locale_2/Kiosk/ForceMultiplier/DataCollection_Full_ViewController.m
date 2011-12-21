@@ -13,7 +13,7 @@
 
 @implementation DataCollection_Full_ViewController
 
-@synthesize firstName,lastName,email,confirmEmail,telephone_1,telephone_2,telephone_3,day,month,year,address_1,address_2,city,state,zip,optIn,content,isEditing,keyboardIsShown,person,person_update,person_archive,context,disclaimerText,currentOffset,popoverY,rightSide,disclaimer,next_btn,addressBox,currentPicker,states,popoverShown,popoverBuilding,accountName;
+@synthesize firstName,lastName,email,confirmEmail,telephone_1,telephone_2,telephone_3,day,month,year,address_1,address_2,city,state,zip,optIn,content,isEditing,keyboardIsShown,person,person_update,person_archive,context,disclaimerText,currentOffset,popoverY,rightSide,disclaimer,next_btn,addressBox,currentPicker,states,popoverShown,popoverBuilding,accountName, dob;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -82,6 +82,7 @@
 
 - (void)dealloc
 {
+    [dob release];
     [super dealloc];
 }
 
@@ -130,7 +131,8 @@
     
     
     //Set styling on textfields
-    textFields = [[NSArray alloc] initWithObjects:firstName,lastName,/*accountName,*/email,confirmEmail,telephone_1,telephone_2,telephone_3,month,day,year,address_1,address_2,city,state,zip,nil];
+    textFields = [[NSArray alloc] initWithObjects:firstName,lastName,/*accountName,*/email,confirmEmail,telephone_1,telephone_2,telephone_3,nil];
+    //month,day,year,address_1,address_2,city,state,zip,nil];
 	for(UITextField *aTextField in textFields){
         aTextField.borderStyle = UITextBorderStyleBezel;
         aTextField.backgroundColor = [UIColor whiteColor];
@@ -316,7 +318,7 @@
     if(!popoverBuilding)
     {
         popoverBuilding = YES;
-        NSTimer *tempTimer = [NSTimer scheduledTimerWithTimeInterval:0.7
+        NSTimer *tempTimer = [NSTimer scheduledTimerWithTimeInterval:0.3
                                                               target:self
                                                             selector:@selector(_displayPickerPopover)
                                                             userInfo:nil
@@ -328,11 +330,32 @@
 
 -(void)_displayPickerPopover
 {
-   
+    popoverShown = YES;
+    
     ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
     UIScrollView *masterScroll = [[appDelegate rootVC] scrollView];
     
-    popoverShown = YES;
+    CGFloat newX = dob.frame.origin.x;
+    CGFloat newY = dob.frame.origin.y;
+    
+	CGSize sizeOfPopover = CGSizeMake(300.0, 220.0);
+	CGPoint positionOfPopover = CGPointMake(newX, newY);
+    
+    NSLog(@"dob y: %f",dob.frame.origin.y);
+    
+    CGRect rc = dob.frame;
+    //rc = [dob convertRect:rc toView:masterView];
+    popoverY = (self.view.frame.origin.y + content.frame.origin.y + rightSide.frame.origin.y + dob.frame.origin.y - masterScroll.contentOffset.y);
+    
+    
+	[popOverControllerWithPicker presentPopoverFromRect:CGRectMake(positionOfPopover.x, positionOfPopover.y, sizeOfPopover.width, sizeOfPopover.height)
+												 inView:self.rightSide permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+
+   
+//    ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
+//    UIScrollView *masterScroll = [[appDelegate rootVC] scrollView];
+//    
+//    popoverShown = YES;
     
     /*
     if([currentPicker isEqualToString:@"dob"]){
@@ -402,6 +425,7 @@
     }else{
         state.text = [values objectForKey:@"states"];
     }*/
+    [dob setTitle:[self parseDate:[values objectForKey:@"date"]] forState:UIControlStateNormal];
 }
 
 -(void)popoverShown
@@ -561,9 +585,27 @@
     }
 	
 	//Resign focus from current textfield
-    [textField resignFirstResponder];
     
+    if (textField==telephone_3) {
+        [NSTimer scheduledTimerWithTimeInterval:0.35 target:self selector:@selector(clickedDOB) userInfo:nil repeats:NO];
+    } else if (textField == address_1 || textField == address_2 || textField == city || textField == state || textField == zip ) {///
+        UITextField *field = [self nextField:textField];
+        if (field!=nil) {
+            [field becomeFirstResponder];
+        }
+    }
+    [textField resignFirstResponder];
+
     return YES;
+}
+
+- (UITextField*)nextField :(UITextField*)textfield {
+    NSArray *fieldArray = [NSArray arrayWithObjects:address_1,address_2,state,zip, nil];
+    NSInteger index = [fieldArray indexOfObject:textfield];
+    if (index>=([fieldArray count]-1)) {
+        return nil;
+    } 
+    return [fieldArray objectAtIndex:(index+1)];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField 
@@ -859,36 +901,41 @@
             lastName.highlighted = YES;
             return NO;
         }
-        if([month.text isEqualToString:@""]){
-            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
-            [month becomeFirstResponder];
+        if (self.dob.titleLabel.text==nil || [self.dob.titleLabel.text isEqualToString:@""]) {
+            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
             return NO;
         }
-        if([day.text isEqualToString:@""]){
-            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
-            [month becomeFirstResponder];
-            return NO;
-        }
-        if([year.text isEqualToString:@""]){
-            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
-            [month becomeFirstResponder];
-            return NO;
-        }else{
-            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-            NSDate *currentDate = [NSDate date];
-            NSDateComponents *comps = [[NSDateComponents alloc] init];
-            [comps setYear:-21];
-            NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-            
-            NSDate *birthDate = [self parseDateString:[NSString stringWithFormat:@"%@/%@/19%@",month.text,day.text,year.text]];
-            
-            if([birthDate compare:maxDate] == NSOrderedDescending){
-                [[appDelegate rootVC]showErrorMessage:@"Must be over 21 years of age."];
-                [month becomeFirstResponder];
-                return NO;
-            }
 
-        }
+//        if([month.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
+//            [month becomeFirstResponder];
+//            return NO;
+//        }
+//        if([day.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
+//            [month becomeFirstResponder];
+//            return NO;
+//        }
+//        if([year.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
+//            [month becomeFirstResponder];
+//            return NO;
+//        }else{
+//            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//            NSDate *currentDate = [NSDate date];
+//            NSDateComponents *comps = [[NSDateComponents alloc] init];
+//            [comps setYear:-21];
+//            NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+//            
+//            NSDate *birthDate = [self parseDateString:[NSString stringWithFormat:@"%@/%@/19%@",month.text,day.text,year.text]];
+//            
+//            if([birthDate compare:maxDate] == NSOrderedDescending){
+//                [[appDelegate rootVC]showErrorMessage:@"Must be over 21 years of age."];
+//                [month becomeFirstResponder];
+//                return NO;
+//            }
+//
+//        }
         
         NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"; 
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES '%@'", emailRegex];
@@ -958,36 +1005,41 @@
             lastName.highlighted = YES;
             return NO;
         }
-        if([month.text isEqualToString:@""]){
+        if (self.dob.titleLabel.text==nil || [self.dob.titleLabel.text isEqualToString:@""]) {
             [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
-            [month becomeFirstResponder];
             return NO;
         }
-        if([day.text isEqualToString:@""]){
-            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
-            [month becomeFirstResponder];
-            return NO;
-        }
-        if([year.text isEqualToString:@""]){
-            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
-            [month becomeFirstResponder];
-            return NO;
-        }else{
-            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-            NSDate *currentDate = [NSDate date];
-            NSDateComponents *comps = [[NSDateComponents alloc] init];
-            [comps setYear:-21];
-            NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-            
-            NSDate *birthDate = [self parseDateString:[NSString stringWithFormat:@"%@/%@/19%@",month.text,day.text,year.text]];
-            
-            if([birthDate compare:maxDate] == NSOrderedDescending){
-                [[appDelegate rootVC]showErrorMessage:@"Debes ser mayor de 21 años."];
-                [month becomeFirstResponder];
-                return NO;
-            }
-            
-        }
+
+//        if([month.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
+//            [month becomeFirstResponder];
+//            return NO;
+//        }
+//        if([day.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
+//            [month becomeFirstResponder];
+//            return NO;
+//        }
+//        if([year.text isEqualToString:@""]){
+//            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
+//            [month becomeFirstResponder];
+//            return NO;
+//        }else{
+//            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//            NSDate *currentDate = [NSDate date];
+//            NSDateComponents *comps = [[NSDateComponents alloc] init];
+//            [comps setYear:-21];
+//            NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+//            
+//            NSDate *birthDate = [self parseDateString:[NSString stringWithFormat:@"%@/%@/19%@",month.text,day.text,year.text]];
+//            
+//            if([birthDate compare:maxDate] == NSOrderedDescending){
+//                [[appDelegate rootVC]showErrorMessage:@"Debes ser mayor de 21 años."];
+//                [month becomeFirstResponder];
+//                return NO;
+//            }
+//            
+//        }
         
         NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"; 
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES '%@'", emailRegex];
@@ -1096,7 +1148,18 @@
     //CREATE MAIN AUTHOR ENTITY
     [person setValue:firstName.text forKey:@"FirstName"];
     [person setValue:lastName.text forKey:@"LastName"];
-    [person setValue:[[NSString alloc] initWithFormat:@"%@/%@/19%@",month.text,day.text,year.text] forKey:@"DOB"];
+    
+    NSDate *dt = [self parseDateString1:dob.titleLabel.text];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:dt];
+    NSInteger day1 = [components day];    
+    NSInteger month1 = [components month];
+    NSInteger year1 = [components year];
+    
+    //[person setValue:[[NSString alloc] initWithFormat:@"%@/%@/19%@",month.text,day.text,year.text] forKey:@"DOB"];
+  
+    [person setValue:[[NSString alloc] initWithFormat:@"%d/%d/%d",month1,day1,year1] forKey:@"DOB"];
+
+    
     [person setValue:email.text forKey:@"Email"];
     [appDelegate rootVC].emailAddress = email.text;
     NSString *telephone = [NSString stringWithFormat:@"%@%@%@",telephone_1.text,telephone_2.text,telephone_3.text];
@@ -1121,7 +1184,9 @@
     //CREATE QUEUE AUTHOR ENTITY
     [person_update setValue:firstName.text forKey:@"FirstName"];
     [person_update setValue:lastName.text forKey:@"LastName"];
-    [person_update setValue:[[NSString alloc] initWithFormat:@"%@/%@/19%@",month.text,day.text,year.text] forKey:@"DOB"];
+    //[person_update setValue:[[NSString alloc] initWithFormat:@"%@/%@/19%@",month.text,day.text,year.text] forKey:@"DOB"];
+    [person_update setValue:[[NSString alloc] initWithFormat:@"%d/%d/%d",month1,day1,year1] forKey:@"DOB"];
+
     [person_update setValue:email.text forKey:@"Email"];
     [person_update setValue:telephone forKey:@"Phone"];
     [person_update setValue:address_1.text forKey:@"Address1"];
@@ -1145,7 +1210,8 @@
     
     [person_archive setValue:firstName.text forKey:@"FirstName"];
     [person_archive setValue:lastName.text forKey:@"LastName"];
-    [person_archive setValue:[[NSString alloc] initWithFormat:@"%@/%@/19%@",month.text,day.text,year.text] forKey:@"DOB"];
+    //[person_archive setValue:[[NSString alloc] initWithFormat:@"%@/%@/19%@",month.text,day.text,year.text] forKey:@"DOB"];
+    [person_archive setValue:[[NSString alloc] initWithFormat:@"%d/%d/%d",month1,day1,year1] forKey:@"DOB"];
     [person_archive setValue:email.text forKey:@"Email"];
     [person_archive setValue:telephone forKey:@"Phone"];
     [person_archive setValue:address_1.text forKey:@"Address1"];
@@ -1225,15 +1291,38 @@
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-    NSLog(@"popoverControllerDidDismissPopover:");
     popoverShown = NO;
     popoverBuilding = NO;
-    //[popoverController.contentViewController.view resignFirstResponder];
-    [self dismissFirstResponder];
+    NSLog(@"popoverControllerDidDismissPopover:");
+    [popoverController.contentViewController.view resignFirstResponder];
 }
 
 - (IBAction)chooseDOB:(id)sender {
     [self clickedDOB];
+}
+
+- (void) doneClicked {
+    [self popoverShown];
+    [popOverControllerWithPicker dismissPopoverAnimated:NO];
+    [address_1 becomeFirstResponder];
+}
+
+-(NSDate*) parseDateString1:(NSString*)aDateString{
+    NSLog(@"a DateString: %@",aDateString);
+    //aDateString = [aDateString substringToIndex:18];
+    //NSLog(@"a DateString: %@",aDateString);
+    
+    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
+    [outputFormatter setDateFormat:@"MMMM dd, yyyy"];
+    
+    NSDate *newDate = [outputFormatter dateFromString:aDateString];
+    
+    
+	[outputFormatter release];
+	
+    return newDate;
+    // For US English, the output is:
+    // newDateString 10:30 on Sunday July 11
 }
 
 @end

@@ -514,44 +514,44 @@
     
     // shahab open
     
-    BOOL isAutologinTrue = [self firstLaunch];
-    //isAutologinTrue = NO;
-    if (isAutologinTrue) {
-        [self appDelegate].userIsLoggedIn = YES;
-        [self showCancel];
-        if([self appDelegate].settingsVw == nil){
-            [self appDelegate].settingsVw = [[KioskSettingsViewController alloc] initWithNibName:@"KioskSettingsViewController" bundle:nil];
-        }
-        [self.navController pushViewController:[self appDelegate].settingsVw animated:YES];
-    } else {
-        if(loginVC == nil){
-            loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController_Landscape" bundle:nil];
-            [loginVC clearFields];
-            
-            [self.navController pushViewController:loginVC animated:YES];
-        } else {
-            //        [self.navController popViewControllerAnimated:YES];
-            if([self appDelegate].settingsVw == nil){
-                [self appDelegate].settingsVw = [[KioskSettingsViewController alloc] initWithNibName:@"KioskSettingsViewController" bundle:nil];
-            }
-            [self.navController pushViewController:[self appDelegate].settingsVw animated:YES];
-            
-        }
-
-    }
+//    BOOL isAutologinTrue = [self firstLaunch];
+//    //isAutologinTrue = NO;
+//    if (isAutologinTrue) {
+//        [self appDelegate].userIsLoggedIn = YES;
+//        [self showCancel];
+//        if([self appDelegate].settingsVw == nil){
+//            [self appDelegate].settingsVw = [[KioskSettingsViewController alloc] initWithNibName:@"KioskSettingsViewController" bundle:nil];
+//        }
+//        [self.navController pushViewController:[self appDelegate].settingsVw animated:YES];
+//    } else {
+//        if(loginVC == nil){
+//            loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController_Landscape" bundle:nil];
+//            [loginVC clearFields];
+//            
+//            [self.navController pushViewController:loginVC animated:YES];
+//        } else {
+//            //        [self.navController popViewControllerAnimated:YES];
+//            if([self appDelegate].settingsVw == nil){
+//                [self appDelegate].settingsVw = [[KioskSettingsViewController alloc] initWithNibName:@"KioskSettingsViewController" bundle:nil];
+//            }
+//            [self.navController pushViewController:[self appDelegate].settingsVw animated:YES];
+//            
+//        }
+//
+//    }
     
  
     // shahab close
     
     // shahab open commented
-//    if(loginVC == nil){
-//        loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController_Landscape" bundle:nil];
-//    }
-//    
-//    //[self showCancel];
-//    [loginVC clearFields];
-//    
-//    [self.navController pushViewController:loginVC animated:YES];
+    if(loginVC == nil){
+        loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController_Landscape" bundle:nil];
+    }
+    
+    [self showCancel];
+    [loginVC clearFields];
+    
+    [self.navController pushViewController:loginVC animated:YES];
     // shahab close commented
 }
 

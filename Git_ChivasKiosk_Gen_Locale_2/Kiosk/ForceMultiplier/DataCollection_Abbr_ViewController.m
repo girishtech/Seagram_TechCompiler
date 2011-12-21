@@ -104,7 +104,8 @@
     
     
     //Set styling on textfields
-    textFields = [[NSArray alloc] initWithObjects:firstName,lastName/*,accountName*/,email,confirmEmail,telephone_1,telephone_2,telephone_3,month,day,year,zip,nil];
+//    textFields = [[NSArray alloc] initWithObjects:firstName,lastName/*,accountName*/,email,confirmEmail,telephone_1,telephone_2,telephone_3,month,day,year,zip,nil];
+    textFields = [[NSArray alloc] initWithObjects:firstName,lastName/*,accountName*/,email,confirmEmail,telephone_1,telephone_2,telephone_3,nil];
 	for(UITextField *aTextField in textFields){
 		aTextField.borderStyle = UITextBorderStyleBezel;
         aTextField.backgroundColor = [UIColor whiteColor];
@@ -283,6 +284,9 @@
 {
     NSLog(@"New Values: %@",values);
     [dob setTitle:[self parseDate:[values objectForKey:@"date"]] forState:UIControlStateNormal];
+//    [popOverControllerWithPicker dismissPopoverAnimated:YES];
+//    [self popoverShown];
+//    [zip becomeFirstResponder];
 }
 
 -(void)popoverShown
@@ -405,6 +409,9 @@
 	//Resign focus from current textfield
     [textField resignFirstResponder];
 
+    if (textField==telephone_3) {
+        [NSTimer scheduledTimerWithTimeInterval:0.35 target:self selector:@selector(clickedDOB) userInfo:nil repeats:NO];
+    }
     
 	//*/
     return YES;
@@ -894,7 +901,8 @@
     
     [person setValue:[[NSString alloc] initWithFormat:@"%d/%d/%d",month1,day1,year1] forKey:@"DOB"];
     [person setValue:email.text forKey:@"Email"];
-    
+    //[person setValue: forKey:@"imageUploaded"]
+    //[person setValue:email.text forKey:@"imageCaptured"];;
     [appDelegate rootVC].emailAddress = email.text;
     
     NSString *telephone = [NSString stringWithFormat:@"%@%@%@",telephone_1.text,telephone_2.text,telephone_3.text];
@@ -1015,14 +1023,20 @@
     popoverShown = NO;
     popoverBuilding = NO;
     NSLog(@"popoverControllerDidDismissPopover:");
-    //[popoverController.contentViewController.view resignFirstResponder];
-    [self dismissFirstResponder];
+    [popoverController.contentViewController.view resignFirstResponder];
+    //[self dismissFirstResponder];
 }
 
 //- (void)popoverController
 
 - (IBAction)chooseDOB:(id)sender {
     [self clickedDOB];
+}
+
+- (void) doneClicked {
+    [self popoverShown];
+    [popOverControllerWithPicker dismissPopoverAnimated:NO];
+    [zip becomeFirstResponder];
 }
 
 

@@ -19,7 +19,8 @@
     IBOutlet UIView *rightSide;
     IBOutlet UIView *addressBox;
     IBOutlet UIScrollView *scrollView;
-    
+    IBOutlet UIButton *dob;
+
     //Fields
     IBOutlet UITextField *firstName;
 	IBOutlet UITextField *lastName;
@@ -101,6 +102,7 @@
 @property (nonatomic) CGPoint currentOffset;
 @property (nonatomic) CGFloat popoverY;
 @property (nonatomic, retain) NSString *currentPicker;
+@property (nonatomic) IBOutlet UIButton *dob;
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSManagedObject *person;
@@ -127,5 +129,6 @@
 -(id)indexForTextField:(UITextField *)textField;
 
 -(void)clearFields;
+- (IBAction)chooseDOB:(id)sender;
 
 @end
