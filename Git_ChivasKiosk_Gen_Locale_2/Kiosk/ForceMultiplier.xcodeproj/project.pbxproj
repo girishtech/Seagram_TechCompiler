@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C7C45DF14A27EF300DBCB2A /* LandscapeImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7C45DE14A27EF200DBCB2A /* LandscapeImagePicker.m */; };
 		65A7192713CE489B001EA2A8 /* Kahlua_Legal.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A7192413CE489B001EA2A8 /* Kahlua_Legal.png */; };
 		65A7192813CE489B001EA2A8 /* Kahlua_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A7192513CE489B001EA2A8 /* Kahlua_Logo.png */; };
 		65A7192C13CE5598001EA2A8 /* Kahlua_Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A7192A13CE5598001EA2A8 /* Kahlua_Splash.png */; };
@@ -267,6 +268,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C7C45DD14A27EF200DBCB2A /* LandscapeImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandscapeImagePicker.h; sourceTree = "<group>"; };
+		4C7C45DE14A27EF200DBCB2A /* LandscapeImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandscapeImagePicker.m; sourceTree = "<group>"; };
 		65A7192413CE489B001EA2A8 /* Kahlua_Legal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Kahlua_Legal.png; sourceTree = "<group>"; };
 		65A7192513CE489B001EA2A8 /* Kahlua_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Kahlua_Logo.png; sourceTree = "<group>"; };
 		65A7192A13CE5598001EA2A8 /* Kahlua_Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Kahlua_Splash.png; sourceTree = "<group>"; };
@@ -1357,6 +1360,8 @@
 				D9140379149CB3D0004AB9A8 /* TakePhotoViewController.h */,
 				D914037A149CB3D1004AB9A8 /* TakePhotoViewController.m */,
 				D914037B149CB3D1004AB9A8 /* TakePhotoViewController.xib */,
+				4C7C45DD14A27EF200DBCB2A /* LandscapeImagePicker.h */,
+				4C7C45DE14A27EF200DBCB2A /* LandscapeImagePicker.m */,
 			);
 			name = PhotoConsent;
 			sourceTree = "<group>";
@@ -1724,6 +1729,7 @@
 				95C2623D1485E6E9009CEE16 /* 5_to_6.xcmappingmodel in Sources */,
 				D90B80461498E81B00038484 /* PhotoConsentViewController.m in Sources */,
 				D914037C149CB3D1004AB9A8 /* TakePhotoViewController.m in Sources */,
+				4C7C45DF14A27EF300DBCB2A /* LandscapeImagePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

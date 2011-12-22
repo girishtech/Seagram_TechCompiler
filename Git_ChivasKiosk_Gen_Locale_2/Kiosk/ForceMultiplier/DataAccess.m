@@ -866,7 +866,8 @@
 
     
     AuthorizedConnector *auth = [appDelegate web];
-    [auth performSelectorInBackground:@selector(dumpRegistrationsToServer) withObject:nil];
+    [auth dumpRegistrationsToServer];
+    //[auth performSelectorInBackground:@selector(dumpRegistrationsToServer) withObject:nil];
     //[auth performSelectorInBackground:@selector(getEventTimes) withObject:nil];
 
 

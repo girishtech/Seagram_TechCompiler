@@ -229,10 +229,12 @@
     
     
     //Register for orientation changes
+    /*
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(orientationDidChange:) 
                                                  name:UIDeviceOrientationDidChangeNotification 
                                                object:nil];
+     */
      NSLog(@"EventID in TabbedViewController-_updateView: %@",[da currentSession]);
 }
 
@@ -255,9 +257,9 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    [self _layoutPage];
-    // Return YES for supported orientations
-	return YES;
+   // [self _layoutPage];
+    //return (interfaceOrientation == UIInterfaceOrientationLandscapeRight || interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
 }
 
 - (void)orientationDidChange:(NSNotification *)note

@@ -194,10 +194,12 @@
     }
     
     //Register for orientation changes
+    /*
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(orientationDidChange:) 
                                                  name:UIDeviceOrientationDidChangeNotification 
                                                object:nil];
+     */
     /*
     UIScrollView* scroller = self.view;
     CGSize size = [scroller contentSize];
@@ -268,14 +270,9 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    [self _layoutPage];
-    // Return YES for supported orientations
-    if(interfaceOrientation == UIInterfaceOrientationLandscapeRight || interfaceOrientation == UIInterfaceOrientationLandscapeLeft){
-    //[self _layoutPage];
-        return YES;
-    }else{
-        return NO;
-    }
+   // [self _layoutPage];
+    //return (interfaceOrientation == UIInterfaceOrientationLandscapeRight || interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
 }
 
 - (void)orientationDidChange:(NSNotification *)note

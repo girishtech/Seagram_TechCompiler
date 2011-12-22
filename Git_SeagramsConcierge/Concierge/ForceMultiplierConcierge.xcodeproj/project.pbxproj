@@ -1469,8 +1469,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Emerge Partners, Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Emerge Partners, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Vedder (56KBLG39Q7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Vedder (56KBLG39Q7)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1485,8 +1485,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "V3 Chivas Concierge";
-				PROVISIONING_PROFILE = "CA91A53A-2A98-4753-9038-F088EF8A8BA4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CA91A53A-2A98-4753-9038-F088EF8A8BA4";
+				PROVISIONING_PROFILE = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1495,8 +1495,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Emerge Partners, Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Emerge Partners, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: David Vedder (56KBLG39Q7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Vedder (56KBLG39Q7)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1510,8 +1510,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "V3 Chivas Concierge";
-				PROVISIONING_PROFILE = "CA91A53A-2A98-4753-9038-F088EF8A8BA4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CA91A53A-2A98-4753-9038-F088EF8A8BA4";
+				PROVISIONING_PROFILE = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

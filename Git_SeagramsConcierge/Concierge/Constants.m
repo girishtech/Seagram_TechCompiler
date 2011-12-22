@@ -15,12 +15,12 @@
 //APP-WIDE
 BOOL const USES_SURVEY = YES;
 
-NSString * const CURRENTVERSION = @"3.0.0.1";
+NSString * const CURRENTVERSION = @"1.0.1";
 
 // DEV = 0
 // STG = 1
 // PROD = 2
-int const RELEASE = 0;
+int const RELEASE = 2;
 
 NSString * const WS_DEV = @"http://ssv2dev.etghosting.net/API/";
 NSString * const WS_STG = @"http://ssv2stg.etghosting.net/API/";

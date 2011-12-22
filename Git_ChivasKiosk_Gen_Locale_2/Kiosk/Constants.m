@@ -19,9 +19,9 @@ BOOL const USES_SURVEY = NO;
 // DEV = 0
 // STG = 1
 // PROD = 2
-int const RELEASE = 0;
+int const RELEASE = 2;
 
-NSString * const CURRENTVERSION = @"2.0.0.7";
+NSString * const CURRENTVERSION = @"1.0.1";
 
 NSString * const WS_DEV = @"http://ssv2dev.etghosting.net/API/";
 NSString * const WS_STG = @"http://ssv2stg.etghosting.net/API/";

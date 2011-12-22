@@ -133,10 +133,11 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    [self _layoutPage];
+    //return (interfaceOrientation == UIInterfaceOrientationLandscapeRight || interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
     /*
-    NSLog(@"shouldAutorotateToInterfaceOrientation: -\n  new device orientation = %d \n new statusbar orientation = %d \n new view orientation = %d \n", [[UIDevice currentDevice] orientation],[UIApplication sharedApplication].statusBarOrientation,interfaceOrientation);
-    //*/
+    [self _layoutPage];
+
     //Register for orientation changes
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(orientationDidChange:) 
@@ -145,6 +146,7 @@
     
     // Return YES for supported orientations
 	return YES;
+    */
 }
 
 - (void)orientationDidChange:(NSNotification *)note
@@ -384,13 +386,13 @@
     [[appDelegate rootVC]hideErrorMessage];
     //Find current textfield and select the next
 	
-    if([self indexForTextField:textField]!=NO)
+    if([self indexForTextField:textField] != NO)
     {
         index = [[self indexForTextField:textField]integerValue];
         NSLog(@"index value: %d",index);
         
-        if(index < ([textFields count]-1)){//-2)){
-            [[textFields objectAtIndex:(index+1)] becomeFirstResponder];
+        if(index < ([textFields count] - 2)){
+            [[textFields objectAtIndex:(index + 1)] becomeFirstResponder];
             return YES;
         }/*else{
             if(index == ([textFields count]-2)){
@@ -409,7 +411,7 @@
 	//Resign focus from current textfield
     [textField resignFirstResponder];
 
-    if (textField==telephone_3) {
+    if (textField == telephone_3) {
         [NSTimer scheduledTimerWithTimeInterval:0.35 target:self selector:@selector(clickedDOB) userInfo:nil repeats:NO];
     }
     

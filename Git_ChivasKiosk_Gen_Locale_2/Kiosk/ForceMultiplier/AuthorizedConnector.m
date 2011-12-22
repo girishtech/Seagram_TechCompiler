@@ -369,7 +369,7 @@
             
             ///////////////
             // IMAGE UPLOAD STUFF
-          /*
+          //*
             NSString *authorEmail = [author valueForKey:@"AuthorEmail"];
             NSLog(@"got email addy of %@", authorEmail);
             
@@ -379,7 +379,6 @@
             BOOL imgExists = [[NSFileManager defaultManager] fileExistsAtPath:imagePath];
             NSLog(@"Checked for image %@; did I find one? %d", imagePath, imgExists);
       
-           // UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfFile: imagePath]];
              if (imgExists) {
                  NSLog(@"Found an image, so creating a new request to send it...");
                  

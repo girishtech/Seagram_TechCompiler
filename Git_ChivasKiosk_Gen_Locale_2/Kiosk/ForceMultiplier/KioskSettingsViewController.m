@@ -121,7 +121,8 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+    //return (interfaceOrientation == UIInterfaceOrientationLandscapeRight || interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
 }
 
 - (void)orientationDidChange:(NSNotification *)note
@@ -342,7 +343,8 @@
     
     ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
     AuthorizedConnector *auth = [appDelegate web];
-    [auth performSelectorInBackground:@selector(dumpRegistrationsToServer) withObject:nil];
+    [auth dumpRegistrationsToServer];
+    //[auth performSelectorInBackground:@selector(dumpRegistrationsToServer) withObject:nil];
         
     [self fetchRecordCount];
     [self reloadGrid];

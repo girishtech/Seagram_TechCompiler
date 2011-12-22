@@ -180,6 +180,9 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    //return (interfaceOrientation == UIInterfaceOrientationLandscapeRight || interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+    /*
     // Return YES for supported orientations
     [self _layoutPage];
     
@@ -190,6 +193,7 @@
                                                object:nil];
     
 	return YES;
+     */
 }
 
 - (void)orientationDidChange:(NSNotification *)note
@@ -548,7 +552,7 @@
         index = [[self indexForTextField:textField]integerValue];
         NSLog(@"index value: %d",index);
         
-        if(index < ([textFields count]-1)){
+        if(index < ([textFields count] - 2)){
             /*
             if(index == 6)
             {
@@ -578,7 +582,6 @@
                 return YES;*/
             //}
 
-            
             [[textFields objectAtIndex:(index+1)] becomeFirstResponder];
             return YES;
         }
@@ -586,7 +589,7 @@
 	
 	//Resign focus from current textfield
     
-    if (textField==telephone_3) {
+    if (textField == telephone_3) {
         [NSTimer scheduledTimerWithTimeInterval:0.35 target:self selector:@selector(clickedDOB) userInfo:nil repeats:NO];
     } else if (textField == address_1 || textField == address_2 || textField == city || textField == state || textField == zip ) {///
         UITextField *field = [self nextField:textField];
@@ -903,7 +906,7 @@
             return NO;
         }
         if (self.dob.titleLabel.text==nil || [self.dob.titleLabel.text isEqualToString:@""]) {
-            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
+            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
             return NO;
         }
 
@@ -919,6 +922,7 @@
 //        }
 //        if([year.text isEqualToString:@""]){
 //            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid date of birth."];
+        //[[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una fecha de nacimiento válida."];
 //            [month becomeFirstResponder];
 //            return NO;
 //        }else{
