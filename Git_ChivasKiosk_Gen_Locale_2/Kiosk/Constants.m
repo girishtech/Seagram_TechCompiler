@@ -21,7 +21,7 @@ BOOL const USES_SURVEY = NO;
 // PROD = 2
 int const RELEASE = 2;
 
-NSString * const CURRENTVERSION = @"1.0.1";
+NSString * const CURRENTVERSION = @"1.0.2";
 
 NSString * const WS_DEV = @"http://ssv2dev.etghosting.net/API/";
 NSString * const WS_STG = @"http://ssv2stg.etghosting.net/API/";
