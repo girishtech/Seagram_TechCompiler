@@ -91,8 +91,6 @@
 #pragma mark - View Management
 - (void)loadNextView
 {
-    
-           
     ForceMultiplierConciergeAppDelegate *appDelegate = (ForceMultiplierConciergeAppDelegate*)[[UIApplication sharedApplication] delegate];
     [[appDelegate rootVC] showSyncBtn];
     [appDelegate.rootVC unlockScreen];
@@ -112,14 +110,15 @@
 {
     ForceMultiplierConciergeAppDelegate *appDelegate = (ForceMultiplierConciergeAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.rootVC lockScreen];
-    
     [[appDelegate da] loginWithUser:self.user.text Password:self.pass.text forVC:self];
-} 
+}
+
 -(void)loginSuccessful
 {
     ForceMultiplierConciergeAppDelegate *appDelegate = (ForceMultiplierConciergeAppDelegate*)[[UIApplication sharedApplication] delegate];
     [[appDelegate da] saveUser:self.user.text Password:self.pass.text];
     [self loadNextView];
+    [[appDelegate rootVC] showSyncBtn];
 }
 
 -(void)loginUnsuccessful
@@ -127,6 +126,7 @@
     ForceMultiplierConciergeAppDelegate *appDelegate = (ForceMultiplierConciergeAppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate.rootVC unlockScreen];
     [[appDelegate rootVC]showErrorMessage:@"Login Failed. Please Try Again."];
+    
 }
 
 - (IBAction)changeWebAddress
@@ -271,7 +271,7 @@
         pass.text = @"";
     ForceMultiplierConciergeAppDelegate *appDelegate = (ForceMultiplierConciergeAppDelegate*)[[UIApplication sharedApplication] delegate];
    
-    [[appDelegate rootVC] hideSyncBtn];
+    //[[appDelegate rootVC] hideSyncBtn];
     webAddress.text = [[appDelegate web] WS_URL];
 	//}
     //[self _layoutPage];

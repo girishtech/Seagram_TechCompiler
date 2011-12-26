@@ -710,6 +710,13 @@
             return NO;
         }
         
+        if([[email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]){
+            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid email address."];
+            [email becomeFirstResponder];
+            email.highlighted = YES;
+            return NO;
+        }
+        
         NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"; 
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
         
@@ -776,6 +783,12 @@
             zip.highlighted = YES;
             return NO;
         }
+        if ([zip.text length]<5) {
+            [[appDelegate rootVC]showErrorMessage:@"zip code must be atleast 5 digits."];
+            [zip becomeFirstResponder];
+            zip.highlighted = YES;
+            return NO;
+        }
     }else{
         //firstName,lastName,dob,email,telephone_1,telephone_2,telephone_3,optIn
         if([firstName.text isEqualToString:@""]){
@@ -795,6 +808,13 @@
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
         
         //NSPredicate *regexMail = [NSPredicate predicateWithFormat:@"SELF MATCHES '\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b'"];
+        
+        if([[email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]){
+            [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa una dirección de correo electrónico válida."];
+            [email becomeFirstResponder];
+            email.highlighted = YES;
+            return NO;
+        }
         
         if((![email.text isEqualToString:confirmEmail.text]) || [email.text isEqualToString:@""]){
             

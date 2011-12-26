@@ -338,6 +338,7 @@
     
     for(NSString *eventTimeID in eventTimeIDs)
     {
+        NSLog(@"%@",eventTimeID);
         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
         NSMutableDictionary *requestJSONObj = [[NSMutableDictionary alloc] initWithCapacity:0];
         [requestJSONObj setValue:APIKEY forKey:@"AccountAPIKey"];
@@ -521,6 +522,10 @@
     NSString *eventTimes = [request responseString];
     //[xmlParser parseXMLString:eventTimesXML forService:@"GetStudyEventTimes"];
     [self.dataAccess addSessions:[eventTimes JSONValue]];
+    
+    ForceMultiplierAppDelegate *appDelegate = (ForceMultiplierAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [[appDelegate settingsVw] fetchRecordCount];
+    [[appDelegate settingsVw] reloadGrid];
     
     [self popRequest];
 }

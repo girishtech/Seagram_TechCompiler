@@ -1433,7 +1433,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Paul mayo (9WGQNWFW98)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Paul mayo (9WGQNWFW98)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -1443,6 +1444,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "Kahlúa Team";
+				PROVISIONING_PROFILE = "40BCE624-1DFA-4443-8DD3-8027F6E0EBB2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40BCE624-1DFA-4443-8DD3-8027F6E0EBB2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1452,7 +1455,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Paul mayo (9WGQNWFW98)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Paul mayo (9WGQNWFW98)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1460,6 +1464,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "Kahlúa Team";
+				PROVISIONING_PROFILE = "40BCE624-1DFA-4443-8DD3-8027F6E0EBB2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40BCE624-1DFA-4443-8DD3-8027F6E0EBB2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1469,8 +1475,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Vedder (56KBLG39Q7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Vedder (56KBLG39Q7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Paul mayo (9WGQNWFW98)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Paul mayo (9WGQNWFW98)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1485,8 +1491,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "V3 Chivas Concierge";
-				PROVISIONING_PROFILE = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
+				PROVISIONING_PROFILE = "40BCE624-1DFA-4443-8DD3-8027F6E0EBB2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40BCE624-1DFA-4443-8DD3-8027F6E0EBB2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1495,8 +1501,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: David Vedder (56KBLG39Q7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: David Vedder (56KBLG39Q7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Paul mayo (9WGQNWFW98)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Paul mayo (9WGQNWFW98)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1510,8 +1516,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "V3 Chivas Concierge";
-				PROVISIONING_PROFILE = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BEA072BB-DB9A-47F2-92A0-45AC4A17D2F8";
+				PROVISIONING_PROFILE = "40BCE624-1DFA-4443-8DD3-8027F6E0EBB2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "40BCE624-1DFA-4443-8DD3-8027F6E0EBB2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1573,7 +1579,7 @@
 				95798F0313ABB8A6000EFE58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		95798F0413ABB8A6000EFE58 /* Build configuration list for PBXNativeTarget "ForceMultiplierConcierge" */ = {
 			isa = XCConfigurationList;
@@ -1582,7 +1588,7 @@
 				95798F0613ABB8A6000EFE58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		95798F0713ABB8A6000EFE58 /* Build configuration list for PBXNativeTarget "ForceMultiplierConciergeTests" */ = {
 			isa = XCConfigurationList;
@@ -1591,7 +1597,7 @@
 				95798F0913ABB8A6000EFE58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 

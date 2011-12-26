@@ -203,6 +203,7 @@
         [navController setNavigationBarHidden:YES animated:YES];
     }
 }
+
 /*
 -(void)lockScreen
 {

@@ -140,6 +140,7 @@
         aTextField.userInteractionEnabled = YES;
 	}
     
+    
     rightSide.userInteractionEnabled = YES;
     content.userInteractionEnabled = YES;
     self.view.userInteractionEnabled = YES;
@@ -775,6 +776,11 @@
 		field.text = @"";
 	}
     [dob setTitle:@"" forState:UIControlStateNormal];
+    address_1.text = @"";
+    address_2.text = @"";
+
+    state.text = @"";
+    
     [self _layoutPage];
     optIn.selected = YES;
     person = nil;
@@ -942,6 +948,13 @@
 //
 //        }
         
+        if([[email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]){
+            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid email address."];
+            [email becomeFirstResponder];
+            email.highlighted = YES;
+            return NO;
+        }
+        
         NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"; 
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES '%@'", emailRegex];
         
@@ -981,8 +994,20 @@
             state.highlighted = YES;
             return NO;
         }
+        if([state.text length]>2){
+            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid state."];
+            [state becomeFirstResponder];
+            state.highlighted = YES;
+            return NO;
+        }
         if([zip.text isEqualToString:@""]){
             [[appDelegate rootVC]showErrorMessage:@"Please enter a zip code."];
+            [zip becomeFirstResponder];
+            zip.highlighted = YES;
+            return NO;
+        }
+        if ([zip.text length]<5) {
+            [[appDelegate rootVC]showErrorMessage:@"zip code must be atleast 5 digits."];
             [zip becomeFirstResponder];
             zip.highlighted = YES;
             return NO;
@@ -1045,6 +1070,12 @@
 //            }
 //            
 //        }
+        if([[email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""]){
+            [[appDelegate rootVC]showErrorMessage:@"Please enter a valid email address."];
+            [email becomeFirstResponder];
+            email.highlighted = YES;
+            return NO;
+        }
         
         NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"; 
         NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES '%@'", emailRegex];
@@ -1087,6 +1118,12 @@
         }
         if([zip.text isEqualToString:@""]){
             [[appDelegate rootVC]showErrorMessage:@"Por favor ingresa el código postal."];
+            [zip becomeFirstResponder];
+            zip.highlighted = YES;
+            return NO;
+        }
+        if ([zip.text length]<5) {
+            [[appDelegate rootVC]showErrorMessage:@"zip code must be atleast 5 digits."];
             [zip becomeFirstResponder];
             zip.highlighted = YES;
             return NO;

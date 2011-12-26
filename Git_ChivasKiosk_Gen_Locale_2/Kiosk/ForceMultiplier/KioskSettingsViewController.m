@@ -345,9 +345,8 @@
     AuthorizedConnector *auth = [appDelegate web];
     [auth dumpRegistrationsToServer];
     //[auth performSelectorInBackground:@selector(dumpRegistrationsToServer) withObject:nil];
-        
-    [self fetchRecordCount];
-    [self reloadGrid];
+    //[self fetchRecordCount];
+    //[self reloadGrid];
     
     [pool release];
 }
@@ -361,8 +360,8 @@
     
     [auth performSelectorInBackground:@selector(getEventTimes) withObject:nil];
     
-    [self fetchRecordCount];
-    [self reloadGrid];
+    //[self fetchRecordCount];
+    //[self reloadGrid];
     
     [pool release];
 }

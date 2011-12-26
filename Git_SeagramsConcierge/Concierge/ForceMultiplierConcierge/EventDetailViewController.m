@@ -170,6 +170,7 @@
     self.eventTabBar.viewControllers = viewcontrollers;
     [self.contentView addSubview:eventTabBar.view];
     // Do any additional setup after loading the view from its nib.
+    //[[appDelegate rootVC] showSyncBtn];
 }
 
 -(void)viewWillAppear:(BOOL)animated
